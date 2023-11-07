@@ -1,4 +1,5 @@
-name: Build typescript project
+name: Build TypeScript project
+
 on:
   push:
     branches: [ "main" ]
@@ -12,5 +13,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build TypeScript Project
+        run: npx tsc
+
+      - name: Copy Views to Dist
+        run: cp -R views dist
+
       - name: Start Express Server
-        run: "npx tsc && cp -R views dist && node dist/app.js"
+        run: node dist/app.js
