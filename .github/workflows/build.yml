@@ -1,0 +1,21 @@
+name: Build and Run TypeScript project
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build TypeScript Project
+        run: npx tsc
