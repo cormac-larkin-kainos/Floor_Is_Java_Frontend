@@ -1,4 +1,4 @@
-name: Build TypeScript project
+name: Build and Run TypeScript project
 
 on:
   push:
@@ -24,4 +24,13 @@ jobs:
         run: cp -R views dist
 
       - name: Start Express Server
-        run: node dist/app.js
+        run: |
+          npm install -g pm2
+          pm2 start dist/app.js
+
+      # Add a delay to allow the server to run (adjust as needed)
+      - name: Delay before stopping
+        run: sleep 5  # Adjust the duration as needed (e.g., sleep 10)
+
+      - name: Stop Express Server and Finish Workflow
+        run: pm2 stop all  # Replace "app" with your process name or ID
