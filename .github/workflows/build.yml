@@ -1,0 +1,16 @@
+name: Build typescript project
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start Express Server
+        run: "npx tsc && cp -R views dist && node dist/app.js"
