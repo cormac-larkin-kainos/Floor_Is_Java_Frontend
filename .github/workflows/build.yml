@@ -15,22 +15,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build TypeScript Project
         run: npx tsc
-
-      - name: Copy Views to Dist
-        run: cp -R views dist
-
-      - name: Start Express Server
-        run: |
-          npm install -g pm2
-          pm2 start dist/app.js
-
-      # Add a delay to allow the server to run (adjust as needed)
-      - name: Delay before stopping
-        run: sleep 5  # Adjust the duration as needed (e.g., sleep 10)
-
-      - name: Stop Express Server and Finish Workflow
-        run: pm2 stop all  # Replace "app" with your process name or ID
