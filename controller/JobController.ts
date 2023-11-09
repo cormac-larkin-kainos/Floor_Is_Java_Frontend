@@ -9,11 +9,11 @@ module.exports = function(app: Application){
     let jobservice: JobService = new JobService();
 
     app.get("/jobs", async (req: Request, res: Response) => {
-        console.log("Hello")
+       
         let jobs: Job[] =  [];
 
         try {
-            console.log("Hello")
+        
             jobs = await jobservice.getAllJobs();
         } catch (error) {
             console.error(error);
