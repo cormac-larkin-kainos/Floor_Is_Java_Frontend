@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start": "npx tsc && cp -R views dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
-    "test-ui": "npm run cucumber",
-    "cucumber": "npx cucumber-js --require 'ts-node/register' --require 'test/ui-tests/step_definitions/**/*.ts'"
+    "test-ui": "mocha -r ts-node/register 'test/ui-tests/**/*.ts'"
   },
   "repository": {
     "type": "git",
