@@ -26,8 +26,8 @@ You can change the URL of the REST API by setting the API_URL environment variab
 # Build and run the service through docker
 ---
 
-You can build in a number of ways using docker and integrate it with a database, these are listed below:
-pre-requisite = docker and docker compose are installed in your local system.
+You can build using docker and integrate it with a database, as outlined below:
+pre-requisite = docker is installed in your local system.
                your docker image for `https://github.com/cormac-larkin-kainos/Floor_Is_Java_Frontend` is 
                 available locally (the web ui has a dependency on this) and running.
 
