@@ -9,8 +9,10 @@ const jobService = new JobService();
 
 
 const job: Job = {
-  job_id: 1,
-  job_title: 'Software Engineer'
+  jobID: 1,
+  title: 'Software Engineer',
+  jobSpec: 'This is a job spec',
+  jobURL: 'www.jobs.com',
 };
 
 describe('JobService', function () {
