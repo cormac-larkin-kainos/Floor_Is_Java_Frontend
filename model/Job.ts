@@ -1,4 +1,6 @@
 export class Job {
-  job_id: number;
-  job_title: string;
+  jobID: number;
+  title: string;
+  jobSpec: string;
+  jobURL: string;
 }
