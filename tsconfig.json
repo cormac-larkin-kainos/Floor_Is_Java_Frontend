@@ -1,14 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "./dist",
-        "target": "ES5",
-        "sourceMap": true,
-        "noImplicitAny": true,
+        "target": "ES2018",
+        "module": "commonjs",
+        "strict": true,
         "esModuleInterop": true,
+        "outDir": "./dist",
+        "types": ["node", "selenium-webdriver", "mocha"],
+        "typeRoots" : ["node_modules/@types"],
     },
-    "include": ["./**/*"],
-    "exclude": [
-        "./node_modules/**/*",
-        "./dist/**/*"
-    ]
+    "include": ["./test/**/*.ts"],
+    "exclude": ["node_modules"]
 }
