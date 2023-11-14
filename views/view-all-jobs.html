@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kainos Job Listings</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <main class="container mt-4">
-        <section id="jobs" class="mt-4">
-            <h2>View All Kainos Jobs</h2>
-            {% if jobs and jobs.length > 0 %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Job</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for job in jobs %}
-                    <tr>
-                        <td><a href="#">{{ job.title }}</a></td>
-                    </tr>
 
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-            There are no Jobs to show...
-            {% endif %}
-        </section>
-    </main>
-</body>
-</html>
+{% extends 'templates/master.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <section id="jobs" class="mt-4">
+        <h2>View All Kainos Jobs</h2>
+        {% if jobs and jobs.length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Job</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td><a href="#">{{ job.title }}</a></td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        There are no Jobs to show...
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
