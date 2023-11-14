@@ -1,0 +1,56 @@
+/*configuring Kainos font files, which can be found in the /fonts directory */
+@font-face {
+    font-family: 'Century Gothic'; 
+    src: url('/fonts/GOTHIC.TFF') format('tff'),
+         url('/fonts/GOTHICB.TFF') format('tff'),
+         url('/fonts/GOTHICBI.TFF') format('tff'),
+         url('/fonts/GOTHICI.TFF') format('tff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.view-jobs-btn {
+    background-color: #41679f;
+    border: 1px solid #41679f;
+}
+
+.view-jobs-btn:hover {
+    background-color: #283583;
+}
+
+body .text-center {
+    font-family: 'Century Gothic', sans-serif;
+}
+
+.navbar {
+    background-color: #41679f !important;
+    font-family: 'Century Gothic', sans-serif;
+}
+
+#navbarNav .navbar-nav .nav-item .nav-link {
+    color: white !important;
+    font-family: 'Century Gothic', sans-serif;
+}
+
+.navbar-toggler-icon {
+    color: #ffffff !important;
+}
+.main-content {
+    flex: 1;
+    font-family: 'Century Gothic', sans-serif;
+}
+
+.footer {
+    background-color: #283583; 
+    color: white;
+    font-family: 'Century Gothic', sans-serif;
+    position: relative; 
+    bottom: 0; 
+    width: 100%; 
+}
