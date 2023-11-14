@@ -15,12 +15,12 @@ body {
     min-height: 100vh; 
 }
 
-.view-jobs-btn {
+.kainos-btn {
     background-color: #41679f;
     border: 1px solid #41679f;
 }
 
-.view-jobs-btn:hover {
+.kainos-btn:hover {
     background-color: #283583;
 }
 
