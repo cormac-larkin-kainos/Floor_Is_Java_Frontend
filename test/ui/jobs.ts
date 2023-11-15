@@ -1,19 +1,20 @@
 import { Builder, Capabilities, By, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
 
-describe('Job List Page', function() {
-  this.timeout(5000);
+describe('Jobs Page', function() {
+  this.timeout(10000);
 
   let driver: WebDriver;
 
   before(async function() {
     driver = await new Builder().withCapabilities(Capabilities.chrome()).build();
-    await driver.get('https://jfq3guymm9.eu-west-1.awsapprunner.com/');
+    await driver.get('http://localhost:3000');
   });
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
       const button = await driver.findElement(By.className('btn-primary'));
+      await new Promise(resolve => setTimeout(resolve, 3000));
       await button.click();
 
       const jobTable = await driver.wait(until.elementLocated(By.className('table')), 5000);

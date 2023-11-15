@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "npx tsc && cp -R views dist && node dist/app.js",
+    "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
+    "lint": "eslint .",
     "test-ui": "mocha -r ts-node/register 'test/ui/**/*.ts'"
   },
   "repository": {
