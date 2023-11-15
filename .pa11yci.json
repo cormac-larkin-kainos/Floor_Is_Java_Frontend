@@ -13,7 +13,7 @@
       { "width": 1600, "height": 900 },
       { "width": 1920, "height": 1080 }
     ]
-  },
+  }, 
   "urls": [
     {
       "url": "http://localhost:3000/views/index.html"
