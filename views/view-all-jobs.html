@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kainos Job Listings</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <main class="container mt-4">
-        <section id="jobs" class="mt-4">
-            <h2>View All Kainos Jobs</h2>
-            {% if jobs and jobs.length > 0 %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Job Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Sharepoint Page</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for job in jobs %}
-                    <tr>
-                        <td>{{ job.title }}</td>
-                        <td>{{ job.jobSpec }}</td>
-                        <td><a href="{{ job.jobURL }}" class="btn btn-primary btn-lg" role="button" >View in Sharepoint</a></td>
-                    </tr>
+{% extends 'templates/master.html' %}
 
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-            There are no Jobs to show...
-            {% endif %}
-        </section>
-    </main>
-</body>
-</html>
+{% block content %}
+<div class="container mt-4">
+    <section id="jobs" class="mt-4">
+        <h2>View All Kainos Jobs</h2>
+        {% if jobs and jobs.length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Job</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Sharepoint Page</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                     <td>{{ job.title }}</td>
+                     <td>{{ job.jobSpec }}</td>
+                     <td><a href="{{ job.jobURL }}" class="btn btn-primary btn-lg kainos-btn" role="button" >View in Sharepoint</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        There are no Jobs to show...
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
