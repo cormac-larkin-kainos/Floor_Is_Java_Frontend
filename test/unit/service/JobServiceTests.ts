@@ -13,6 +13,7 @@ const job: Job = {
   title: 'Software Engineer',
   jobSpec: 'This is a job spec',
   jobURL: 'www.jobs.com',
+  jobBand: 'Consultant'
 };
 
 describe('JobService', function () {

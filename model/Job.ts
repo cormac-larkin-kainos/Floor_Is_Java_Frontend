@@ -3,4 +3,5 @@ export class Job {
   title: string;
   jobSpec: string;
   jobURL: string;
+  jobBand: string;
 }
