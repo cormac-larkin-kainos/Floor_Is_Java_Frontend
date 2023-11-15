@@ -25,22 +25,6 @@ jobs:
     - name: Install Pa11y CI
       run: npm install -g pa11y-ci
 
-    - name: Install HTML reporter
-      run: npm install -g pa11y-ci-reporter-html
-
     - name: Run Pa11y CI
       run: pa11y-ci
-
-    - name: Generate HTML report
-      id: pa11y
-      run: |
-        TIMESTAMP=$(date +%Y%m%d%H%M%S)
-        pa11y-ci --reporter=pa11y-ci-reporter-html > "pa11y-report-$TIMESTAMP.html"
-        echo "::set-output name=timestamp::$TIMESTAMP"
-    
-    - name: Archive HTML report
-      uses: actions/upload-artifact@v2
-      with:
-        name: pa11y-report
-        path: "pa11y-ci-report/pa11y-report-${{ steps.pa11y.outputs.timestamp }}.html"
     
