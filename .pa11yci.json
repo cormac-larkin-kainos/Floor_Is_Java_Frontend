@@ -19,7 +19,7 @@
       "url": "http://localhost:3000/views/index.html"
     },
     {
-      "url": "http://localhost:30000/views/view-all-jobs.html"
+      "url": "http://localhost:3000/views/view-all-jobs.html"
     }
   ]
 }
