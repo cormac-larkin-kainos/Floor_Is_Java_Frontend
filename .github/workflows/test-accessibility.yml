@@ -24,3 +24,10 @@ jobs:
 
     - name: Run Accessibility tests
       run: npm run pa11y-ci
+    
+    - name: Upload Pa11y Reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: pa11y-reports
+        path: |
+          pa11y-reports/*.json
