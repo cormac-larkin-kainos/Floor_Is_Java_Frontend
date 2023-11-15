@@ -28,7 +28,7 @@ jobs:
         CI: true
     
     - name: Wait for server
-      run: sleep 5
+      run: sleep 10
 
     - name: Run UI tests
       run: npm run test-ui
