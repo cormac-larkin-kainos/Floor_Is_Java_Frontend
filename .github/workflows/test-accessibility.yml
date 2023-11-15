@@ -1,0 +1,36 @@
+name: Accessibility Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Pa11y CI
+      run: npm install -g pa11y-ci
+    
+    - name: Start server
+      run: npm start > /dev/null 2>&1 &
+    
+    - name: Wait for server
+      run: sleep 10
+
+    - name: Run Pa11y CI
+      run: pa11y-ci
+    

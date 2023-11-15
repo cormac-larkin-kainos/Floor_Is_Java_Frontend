@@ -1,0 +1,37 @@
+name: Scheduled Accessibility Tests
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Midnight
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.21.3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Scheduled Accessibility Tests and Generate HTML report
+      id: pa11y
+      run: |
+        TIMESTAMP=$(date +%Y%m%d%H%M%S)
+        URL1="https://jfq3guymm9.eu-west-1.awsapprunner.com/"
+        URL2="https://jfq3guymm9.eu-west-1.awsapprunner.com/jobs"
+        pa11y-ci-schedule --reporter=pa11y-ci-reporter-html --config=.pa11yci.json $URL1 $URL2 > "pa11y-scheduled-report-$TIMESTAMP.html"
+        echo "::set-output name=timestamp::$TIMESTAMP"
+    
+    - name: Archive HTML report
+      uses: actions/upload-artifact@v2
+      with:
+        name: pa11y-schedule-report
+        path: "pa11y-ci-report/pa11y-scheduled-report-${{ steps.pa11y.outputs.timestamp }}.html"
+      
