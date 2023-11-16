@@ -10,7 +10,7 @@
     "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
     "lint": "eslint .",
-    "pa11y-ci": "pa11y-ci --config .pa11yci.json",
+    "pa11y-ci": "pa11y-ci --config .pa11yci",
     "pa11y-ci-scheduled": "pa11y-ci --reporter=pa11y-ci-reporter-html"
   },
   "repository": {
