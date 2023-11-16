@@ -28,8 +28,9 @@ describe('Landing Page', function() {
 
   describe('"First View in Sharepoint" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      const sharepointButton = await driver.findElements(By.id('viewSharePointButton_1'));
-      await sharepointButton.click();
+      const jobId = 1;
+      const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
+      await button.click();
 
       await driver.wait(until.urlContains('sharepoint'), 20000);
 
