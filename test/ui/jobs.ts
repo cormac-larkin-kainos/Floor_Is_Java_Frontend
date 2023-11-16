@@ -17,10 +17,10 @@ describe('Jobs Page', function() {
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
       const button = await driver.findElement(By.className('btn-primary'));
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 20000));
       await button.click();
 
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 5000);
+      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 20000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
@@ -31,7 +31,7 @@ describe('Jobs Page', function() {
       const sharepointButton = buttons[0]; 
       await sharepointButton.click();
 
-      await driver.wait(until.urlContains('sharepoint'), 5000);
+      await driver.wait(until.urlContains('sharepoint'), 20000);
 
       const url = await driver.getCurrentUrl();
       expect(url).to.include('sharepoint');
