@@ -1,5 +1,6 @@
-import { Builder, Capabilities, By, until, WebDriver } from 'selenium-webdriver';
+import { Builder, By, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
+import chrome from 'selenium-webdriver/chrome';
 
 describe('Jobs Page', function() {
   this.timeout(10000);
@@ -7,7 +8,9 @@ describe('Jobs Page', function() {
   let driver: WebDriver;
 
   before(async function() {
-    driver = await new Builder().withCapabilities(Capabilities.chrome()).build();
+    const options = new chrome.Options();
+    options.addArguments('--headless'); 
+    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
 
