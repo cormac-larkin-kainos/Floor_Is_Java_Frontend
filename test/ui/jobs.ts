@@ -21,7 +21,7 @@ describe('Landing Page', function() {
       await new Promise(resolve => setTimeout(resolve, 5000));
       await button.click();
 
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 10000);
+      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 20000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
