@@ -17,18 +17,18 @@ describe('Landing Page', function() {
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
-      const button = await driver.findElement(By.className('btn-primary'));
+      const button = await driver.findElement(By.id('viewJobRolesButton'));
       await new Promise(resolve => setTimeout(resolve, 10000));
       await button.click();
       
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 30000);
+      const jobTable = await driver.wait(until.elementLocated(By.id('jobs')), 30000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
 
   describe('"First View in Sharepoint" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      const buttons = await driver.findElements(By.className('btn-primary'));
+      const buttons = await driver.findElements(By.id('viewSharePointButton'));
       const sharepointButton = buttons[0]; 
       await sharepointButton.click();
 
