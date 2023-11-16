@@ -2,14 +2,15 @@ import { Builder, By, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
 import chrome from 'selenium-webdriver/chrome';
 
-describe('Jobs Page', function() {
-  this.timeout(50000);
+describe('Landing Page', function() {
+  this.timeout(10000);
 
   let driver: WebDriver;
 
   before(async function() {
     const options = new chrome.Options();
     options.addArguments('--headless'); 
+    options.addArguments('--window-size=1920,1080');
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
@@ -17,10 +18,10 @@ describe('Jobs Page', function() {
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
       const button = await driver.findElement(By.className('btn-primary'));
-      await new Promise(resolve => setTimeout(resolve, 20000));
+      await new Promise(resolve => setTimeout(resolve, 3000));
       await button.click();
 
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 20000);
+      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 5000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
@@ -31,7 +32,7 @@ describe('Jobs Page', function() {
       const sharepointButton = buttons[0]; 
       await sharepointButton.click();
 
-      await driver.wait(until.urlContains('sharepoint'), 20000);
+      await driver.wait(until.urlContains('sharepoint'), 5000);
 
       const url = await driver.getCurrentUrl();
       expect(url).to.include('sharepoint');
