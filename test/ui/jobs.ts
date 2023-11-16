@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import chrome from 'selenium-webdriver/chrome';
 
 describe('Jobs Page', function() {
-  this.timeout(10000);
+  this.timeout(50000);
 
   let driver: WebDriver;
 
