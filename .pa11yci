@@ -1,5 +1,6 @@
 {
     "defaults": {
+      "concurrency": 1,
       "runner": "axe",
       "viewports": [
         { "width": 375, "height": 667 },  
