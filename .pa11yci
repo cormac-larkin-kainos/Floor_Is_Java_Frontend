@@ -1,7 +1,7 @@
 {
     "defaults": {
       "concurrency": 1,
-      "runner": "htmlcs",
+      "runners": ["htmlcs"],
       "standard": "WCAG2AA",
       "viewports": [
         { "width": 375, "height": 667 },  
