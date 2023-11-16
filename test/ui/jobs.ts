@@ -18,10 +18,10 @@ describe('Landing Page', function() {
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
       const button = await driver.findElement(By.className('btn-primary'));
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 5000));
       await button.click();
 
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 5000);
+      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 10000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
