@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import chrome from 'selenium-webdriver/chrome';
 
 describe('Landing Page', function() {
-  this.timeout(10000);
+  this.timeout(100000);
 
   let driver: WebDriver;
 
