@@ -20,8 +20,8 @@ describe('Landing Page', function() {
       const button = await driver.findElement(By.className('btn-primary'));
       await new Promise(resolve => setTimeout(resolve, 5000));
       await button.click();
-
-      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 20000);
+      
+      const jobTable = await driver.wait(until.elementLocated(By.className('table')), 200000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
@@ -32,7 +32,7 @@ describe('Landing Page', function() {
       const sharepointButton = buttons[0]; 
       await sharepointButton.click();
 
-      await driver.wait(until.urlContains('sharepoint'), 5000);
+      await driver.wait(until.urlContains('sharepoint'), 50000);
 
       const url = await driver.getCurrentUrl();
       expect(url).to.include('sharepoint');

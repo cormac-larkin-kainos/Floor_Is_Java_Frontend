@@ -21,17 +21,11 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-    
-    - name: Install webdriver
-      run: npm install webdriver-manager --save-dev
-    
-    - name: Update webdriver
-      run: npx webdriver-manager update --versions.chrome [119.0.6045.158]
 
     - name: Start server
-      run: npm start &
+      run: npm start & 
       env:
-        CI: true
+        API_URL: ${{ secrets.API_URL }}
     
     - name: Wait for server
       run: sleep 10
