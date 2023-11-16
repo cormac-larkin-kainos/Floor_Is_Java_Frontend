@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { Request, Response } from 'express';
 import path from 'path';
 import nunjucks from 'nunjucks';
@@ -24,7 +26,7 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({ secret: 'NOT HARDCODED SECRET', cookie: { maxAge: 60000}}));
+app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60000}}));
 
 declare module 'express-session' {
   interface SessionData {

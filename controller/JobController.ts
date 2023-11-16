@@ -11,11 +11,10 @@ module.exports = function(app: Application){
     let jobs: Job[] =  [];
 
     try {
-        
       jobs = await jobservice.getAllJobs();
     } catch (error) {
       console.error(error);
     }
-    res.render('view-all-jobs', {jobs});
+    res.render('view-all-jobs', {jobs, token: req.session.token});
   });
 };

@@ -1,8 +1,6 @@
 import { Request, Response, Application } from 'express';
 import { Login } from '../model/Auth';
 import AuthService from '../service/AuthService';
-import axios from 'axios';
-import { Job } from '../model/Job';
 
 const authService: AuthService = new AuthService();
 
@@ -16,10 +14,7 @@ module.exports = function (app: Application) {
     
     try {
       req.session.token = await authService.login(data);
-      const response = await axios.get('/jobs');
-      const jobs: Job[] = response.data;
-      console.log(req.session.token);
-      res.render('view-all-jobs', { token: req.session.token, jobs });
+      res.redirect('/jobs');
 
     } catch (e) {
       console.error(e);
@@ -29,13 +24,8 @@ module.exports = function (app: Application) {
   });
 
   app.post('/logout', (req: Request, res: Response) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error logging out', err);
-        return res.redirect('/');
-      }
-      console.log('logout successful');
-      res.redirect('/');
-    });
+    req.session.token = null;
+    console.log('logout successful');
+    res.redirect('/login');
   });
 };
