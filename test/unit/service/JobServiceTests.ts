@@ -14,6 +14,7 @@ const job: Job = {
   jobSpec: 'This is a job spec',
   capability: 'Engineering',
   jobURL: 'www.jobs.com',
+  jobBand: 'Consultant'
 };
 
 describe('JobService', function () {
