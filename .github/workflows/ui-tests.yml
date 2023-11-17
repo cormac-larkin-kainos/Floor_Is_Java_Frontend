@@ -1,4 +1,4 @@
-name: RUN UNIT TESTS
+name: Run UI Tests
 
 on:
   push:
@@ -22,5 +22,13 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm test
+    - name: Start server
+      run: npm start & 
+      env:
+        API_URL: ${{ secrets.API_URL }}
+    
+    - name: Wait for server
+      run: sleep 10
+
+    - name: Run UI tests
+      run: npm run test-ui
