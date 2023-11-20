@@ -9,8 +9,15 @@ describe('Landing Page', function() {
 
   before(async function() {
     const options = new chrome.Options();
+<<<<<<< HEAD
     options.headless();
     options.windowSize({ width: 1920, height: 1080 });
+=======
+    options.headless().windowSize({
+      width: 1920,
+      height: 1080,
+    });
+>>>>>>> a3c12292abaf7c6260ba1e968d9de951c4ac29bf
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
