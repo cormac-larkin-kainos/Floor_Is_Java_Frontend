@@ -19,7 +19,7 @@ function extendWebDriver(driver: WebDriver): CustomWebDriver {
 let driver: CustomWebDriver;
 
 before(async function (this: Mocha.Context) {
-  this.timeout(30000);
+  this.timeout(100000);
 
   try {
     console.log('Starting WebDriver setup...');
