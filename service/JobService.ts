@@ -14,7 +14,7 @@ export default class JobService {
     
       return jobs;
     } catch(e) {
-      console.log(e)
+      console.log(e);
       throw new Error('Could not get jobs');
     }
   } 
