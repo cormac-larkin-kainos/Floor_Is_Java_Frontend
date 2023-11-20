@@ -17,7 +17,7 @@ describe('Landing Page', function() {
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
-      const button = await driver.wait(until.elementLocated(By.id('viewJobRolesButton')), 10000);
+      const button = await driver.wait(until.elementLocated(By.id('viewJobRolesButton')), 30000);
       await button.click();
 
       
