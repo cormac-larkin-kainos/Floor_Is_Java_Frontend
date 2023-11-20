@@ -1,4 +1,4 @@
-import { Builder, By, until, WebDriver } from 'selenium-webdriver';
+import { Builder, By, logging, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
 import chrome from 'selenium-webdriver/chrome';
 
@@ -9,13 +9,16 @@ describe('Landing Page', function() {
 
   before(async function() {
     const options = new chrome.Options();
-    options.windowSize({
+    const perfs = new logging.Preferences();
+    perfs.setLevel(logging.Type.BROWSER,logging.Level.ALL);
+
+    options.headless().windowSize({
       width: 1920,
       height: 1080,
     });
 
     //options.addArguments("disable-dev-shm-usage")
-    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+    driver = await new Builder().setLoggingPrefs(perfs).forBrowser('chrome').setChromeOptions(options).build();
     driver.manage().setTimeouts({
       implicit: 20000,
       pageLoad: 10000
