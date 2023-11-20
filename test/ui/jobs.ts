@@ -9,7 +9,7 @@ describe('Landing Page', function() {
 
   before(async function() {
     const options = new chrome.Options();
-    options.headless().windowSize({
+    options.windowSize({
       width: 1920,
       height: 1080,
     });
