@@ -22,16 +22,13 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Update Selenium WebDriver
-      run: npx webdriver-manager update
-
     - name: Start server
       run: npm start & 
       env:
         API_URL: ${{ secrets.API_URL }}
     
     - name: Wait for server
-      run: sleep 15
+      run: sleep 10
 
     - name: Run UI tests
       run: npm run test-ui
