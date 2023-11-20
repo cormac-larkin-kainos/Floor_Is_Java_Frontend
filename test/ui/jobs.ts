@@ -1,6 +1,6 @@
-import { Builder, By, logging, until, WebDriver } from 'selenium-webdriver';
+import { Builder, By, Capabilities, logging, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
-import chrome from 'selenium-webdriver/chrome';
+import { Options } from 'selenium-webdriver/chrome';
 
 describe('Landing Page', function() {
   this.timeout(100000);
@@ -8,25 +8,13 @@ describe('Landing Page', function() {
   let driver: WebDriver;
 
   before(async function() {
-    const options = new chrome.Options();
-    const perfs = new logging.Preferences();
-    perfs.setLevel(logging.Type.BROWSER,logging.Level.ALL);
-
-    options
-    .headless()
-    .addArguments("disable-gpu","disable-extensions","no-sandbox","disable-dev-shm-usage")
-    .windowSize({
-      width: 1920,
+    const options = new Options();
+    options.headless().windowSize({
       height: 1080,
+      width: 1920,
     });
 
-    //options.addArguments("disable-dev-shm-usage")
-    driver = await new Builder().setLoggingPrefs(perfs).forBrowser('chrome').setChromeOptions(options).build();
-    driver.manage().setTimeouts({
-      implicit: 20000,
-      pageLoad: 10000
-    })
-    //await driver.get('http://localhost:3000');
+    driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
   });
 
   describe('"View Job Roles" button', function() {
