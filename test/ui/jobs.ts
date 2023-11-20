@@ -18,18 +18,23 @@ function extendWebDriver(driver: WebDriver): CustomWebDriver {
 
 let driver: CustomWebDriver;
 
-before(async function () {
-  this.timeout(10000); 
+before(async function (this: Mocha.Context) {
+  this.timeout(10000);
 
   try {
+    console.log('Starting WebDriver setup...');
     const options = new chrome.Options();
     options.addArguments('--headless');
     options.addArguments('--start-maximized');
     driver = extendWebDriver(await new Builder().forBrowser('chrome').setChromeOptions(options).build());
 
+    console.log('WebDriver setup completed. Setting timeouts...');
     await driver.setTimeouts({ implicit: 10000 });
 
+    console.log('Navigating to the application...');
     await driver.get('http://localhost:3000');
+
+    console.log('Application navigation completed.');
   } catch (error) {
     console.error('Error during WebDriver setup or navigation:', error);
     throw error;
