@@ -4,11 +4,11 @@ import { Job } from '../model/Job';
 import axios from 'axios';
 
 export default class JobService {
-  URL: string = process.env.API_URL;
+  url: string = process.env.API_URL;
 
   async getAllJobs(): Promise<Job[]>{
     try{
-      const response = await axios.get(URL + 'jobs');
+      const response = await axios.get(this.url + 'jobs');
       const jobs: Job[] = response.data;
     
       return jobs;
