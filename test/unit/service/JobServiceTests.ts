@@ -24,7 +24,7 @@ describe('JobService', function () {
 
       const data = [job];
 
-      mock.onGet(jobService.URL).reply(200, data);
+      mock.onGet(jobService.url).reply(200, data);
 
       const results = await jobService.getAllJobs();
 
@@ -34,7 +34,7 @@ describe('JobService', function () {
     it('should throw an exception when a 500 error is returned from axios', async () => {
       const mock = new MockAdapter(axios);
 
-      mock.onGet(jobService.URL).reply(500);
+      mock.onGet(jobService.url).reply(500);
 
       let error;
 
