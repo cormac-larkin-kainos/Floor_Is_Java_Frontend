@@ -19,6 +19,8 @@ function extendWebDriver(driver: WebDriver): CustomWebDriver {
 let driver: CustomWebDriver;
 
 before(async function () {
+  this.timeout(10000); 
+
   try {
     const options = new chrome.Options();
     options.addArguments('--headless');
@@ -36,8 +38,7 @@ before(async function () {
 
 describe('"View Job Roles" button', function () {
   it('should load job list when clicked', async function () {
-
-    await driver.setTimeouts({ implicit: 15000 });
+    this.timeout(15000); 
 
     const button = await driver.findElement(By.id('viewJobRolesButton'));
     await button.click();
@@ -49,8 +50,7 @@ describe('"View Job Roles" button', function () {
 
 describe('"First View in Sharepoint" button', function () {
   it('should redirect to the appropriate page when clicked', async function () {
-
-    await driver.setTimeouts({ implicit: 20000 });
+    this.timeout(20000);
 
     const jobId = 1;
     const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
@@ -64,5 +64,6 @@ describe('"First View in Sharepoint" button', function () {
 });
 
 after(async function () {
+  this.timeout(10000); 
   await driver.quit();
 });
