@@ -8,12 +8,17 @@ describe('Landing Page', function() {
   let driver: WebDriver;
 
   before(async function() {
-    const options = new chrome.Options();
-    options.addArguments('--headless'); 
-    options.addArguments('--window-size=1920,1080');
-    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
-    await driver.get('http://localhost:3000');
-  });
+    try {
+      const options = new chrome.Options();
+      options.addArguments('--headless'); 
+      options.addArguments('--start-maximized');
+      driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+      await driver.get('http://localhost:3000');
+    } catch (error) {
+      console.error('Error during WebDriver setup or navigation:', error);
+      throw error;
+    }
+  });  
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
