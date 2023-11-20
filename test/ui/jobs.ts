@@ -17,8 +17,9 @@ describe('Job Roles Tests', function() {
 
   it('should load job list and redirect to Sharepoint page when clicked', async function () {
     const viewJobRolesButton = await driver.findElement(By.id('viewJobRolesButton'));
-    await driver.wait(until.elementIsEnabled(viewJobRolesButton), 10000);
+    await driver.wait(until.elementIsVisible(viewJobRolesButton), 10000);
     await viewJobRolesButton.click();
+
 
     const jobTable = await driver.wait(until.elementLocated(By.id('jobs')), 30000);
     await driver.wait(until.elementIsVisible(jobTable), 10000);
@@ -27,7 +28,7 @@ describe('Job Roles Tests', function() {
 
     const jobId = 1;
     const viewSharePointButton = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
-    await driver.wait(until.elementIsEnabled(viewSharePointButton), 10000);
+    await driver.wait(until.elementIsVisible(viewSharePointButton), 10000);
     await viewSharePointButton.click();
 
     await driver.wait(until.urlContains('sharepoint'), 20000);
