@@ -13,6 +13,8 @@ describe('Landing Page', function() {
       width: 1920,
       height: 1080,
     });
+
+    options.addArguments("disable-dev-shm-usage")
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
