@@ -45,8 +45,9 @@ describe('"View Job Roles" button', function () {
   it('should load job list when clicked', async function () {
     this.timeout(15000); 
 
-    const button = await driver.findElement(By.id('viewJobRolesButton'));
+    const button = await driver.wait(until.elementLocated(By.id('viewJobRolesButton')), 10000);
     await button.click();
+
 
     const jobTable = await driver.findElement(By.id('jobs'));
     expect(await jobTable.isDisplayed()).to.be.true;
@@ -58,7 +59,7 @@ describe('"First View in Sharepoint" button', function () {
     this.timeout(20000);
 
     const jobId = 1;
-    const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
+    const button = await driver.wait(until.elementLocated(By.id(`viewSharePointButton_${jobId}`)), 10000);
     await button.click();
 
     await driver.wait(until.urlContains('sharepoint'));
