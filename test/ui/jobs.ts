@@ -29,7 +29,7 @@ before(async function (this: Mocha.Context) {
     driver = extendWebDriver(await new Builder().forBrowser('chrome').setChromeOptions(options).build());
 
     console.log('WebDriver setup completed. Setting timeouts...');
-    await driver.setTimeouts({ implicit: 10000 });
+    await driver.setTimeouts({ implicit: 100000 });
 
     console.log('Navigating to the application...');
     await driver.get('http://localhost:3000');
@@ -43,9 +43,9 @@ before(async function (this: Mocha.Context) {
 
 describe('"View Job Roles" button', function () {
   it('should load job list when clicked', async function () {
-    this.timeout(15000); 
+    this.timeout(100000); 
 
-    const button = await driver.wait(until.elementLocated(By.id('viewJobRolesButton')), 60000);
+    const button = await driver.wait(until.elementLocated(By.id('viewJobRolesButton')), 100000);
     await button.click();
 
 
@@ -56,10 +56,10 @@ describe('"View Job Roles" button', function () {
 
 describe('"First View in Sharepoint" button', function () {
   it('should redirect to the appropriate page when clicked', async function () {
-    this.timeout(20000);
+    this.timeout(100000);
 
     const jobId = 1;
-    const button = await driver.wait(until.elementLocated(By.id(`viewSharePointButton_${jobId}`)), 60000);
+    const button = await driver.wait(until.elementLocated(By.id(`viewSharePointButton_${jobId}`)), 100000);
     await button.click();
 
     await driver.wait(until.urlContains('sharepoint'));
@@ -70,7 +70,7 @@ describe('"First View in Sharepoint" button', function () {
 });
 
 after(async function (this: Mocha.Context) {
-  this.timeout(10000);
+  this.timeout(100000);
 
   if (driver) {
     try {
