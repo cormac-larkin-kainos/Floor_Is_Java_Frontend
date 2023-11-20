@@ -28,7 +28,7 @@ jobs:
         API_URL: ${{ secrets.API_URL }}
     
     - name: Wait for server
-      run: sleep 10
+      run: sleep 15
 
     - name: Run UI tests
       run: npm run test-ui
