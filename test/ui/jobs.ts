@@ -12,7 +12,10 @@ describe('Landing Page', function() {
     const perfs = new logging.Preferences();
     perfs.setLevel(logging.Type.BROWSER,logging.Level.ALL);
 
-    options.headless().windowSize({
+    options
+    .headless()
+    .addArguments("disable-gpu","disable-extensions","no-sandbox","disable-dev-shm-usage")
+    .windowSize({
       width: 1920,
       height: 1080,
     });
