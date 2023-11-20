@@ -12,7 +12,9 @@ const job: Job = {
   jobID: 1,
   title: 'Software Engineer',
   jobSpec: 'This is a job spec',
+  capability: 'Engineering',
   jobURL: 'www.jobs.com',
+  jobBand: 'Consultant'
 };
 
 describe('JobService', function () {
