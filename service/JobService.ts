@@ -1,10 +1,11 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
 import { Job } from '../model/Job';
 import axios from 'axios';
 
+dotenv.config();
+
 export default class JobService {
-  url: string = process.env.API_URL;
+  url: string = 'https://tk6ar7pqdr.eu-west-1.awsapprunner.com/api/';
 
   async getAllJobs(): Promise<Job[]>{
     try{
@@ -13,7 +14,8 @@ export default class JobService {
     
       return jobs;
     } catch(e) {
+      console.log(e)
       throw new Error('Could not get jobs');
     }
-  }  
+  } 
 }
