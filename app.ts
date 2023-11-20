@@ -1,5 +1,4 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
 import { Request, Response } from 'express';
 import path from 'path';
 import nunjucks from 'nunjucks';
@@ -7,6 +6,8 @@ import express from 'express';
 import session from 'express-session';
 
 const app = express();
+
+dotenv.config();
 
 // Configure Nunjucks.
 const appViews = path.join(__dirname, '/views/');
