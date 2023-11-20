@@ -7,7 +7,7 @@ axios.defaults.baseURL = process.env.API_URL;
 
 export default class JobService {
 
-  URL: string = '/jobs';
+  URL: string = 'http://localhost:8080/api/jobs';
 
   async getAllJobs(): Promise<Job[]>{
     try{

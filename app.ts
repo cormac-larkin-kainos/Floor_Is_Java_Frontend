@@ -39,7 +39,7 @@ app.listen(3000, () => {
 });
 
 app.get('/', (req: Request, res: Response)=> {
-  res.render('index');
+  res.render('index', {token: req.session.token});
 });
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
