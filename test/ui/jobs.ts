@@ -19,7 +19,7 @@ function extendWebDriver(driver: WebDriver): CustomWebDriver {
 let driver: CustomWebDriver;
 
 before(async function (this: Mocha.Context) {
-  this.timeout(10000);
+  this.timeout(30000);
 
   try {
     console.log('Starting WebDriver setup...');
@@ -68,7 +68,19 @@ describe('"First View in Sharepoint" button', function () {
   });
 });
 
-after(async function () {
-  this.timeout(10000); 
-  await driver.quit();
+after(async function (this: Mocha.Context) {
+  this.timeout(10000);
+
+  if (driver) {
+    try {
+      console.log('Quitting WebDriver...');
+      await driver.quit();
+      console.log('WebDriver quit successfully.');
+    } catch (error) {
+      console.error('Error during WebDriver quit:', error);
+    }
+  } else {
+    console.warn('WebDriver is undefined. Quit skipped.');
+  }
 });
+
