@@ -9,8 +9,7 @@ describe('Landing Page', function() {
 
   before(async function() {
     const options = new chrome.Options();
-    options.addArguments('--headless'); 
-    options.addArguments('--window-size=1920,1080');
+    options.addArguments('--headless', '--window-size=1920,1080');
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
