@@ -16,6 +16,10 @@ describe('Landing Page', function() {
 
     //options.addArguments("disable-dev-shm-usage")
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+    driver.manage().setTimeouts({
+      implicit: 20000,
+      pageLoad: 10000
+    })
     //await driver.get('http://localhost:3000');
   });
 

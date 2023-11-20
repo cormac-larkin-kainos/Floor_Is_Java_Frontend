@@ -23,7 +23,7 @@ jobs:
       run: npm install
 
     - name: Start server
-      run: npm start &
+      run: npm start
       env:
         API_URL: ${{ secrets.API_URL }}
     
