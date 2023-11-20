@@ -10,7 +10,7 @@ describe('Landing Page', function () {
   before(async function () {
     const options = new chrome.Options();
     options.addArguments('--headless');
-    options.addArguments('--window-size=1920,1080');
+    options.addArguments('--start-maximized');
     driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
@@ -31,70 +31,86 @@ describe('Landing Page', function () {
         const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
 
-        await usernameInput.sendKeys('invalidUsername');
-        await passwordInput.sendKeys('validPassword');
+        await usernameInput.sendKeys('fakeUsername');
+        await passwordInput.sendKeys(process.env.PASSWORD_SECRET);
         await loginButton.click();
 
         const errorMessage = await driver.wait(
-          until.elementLocated(By.id('errorMessage')),
+          until.elementLocated(By.id('loginError')),
           5000
         );
-        expect(await errorMessage.getText()).to.equal('Invalid Login credentials');
+        expect(await errorMessage.getText()).to.equal('Could not login');
       });
 
       it('should show "Invalid Login credentials" error for incorrect password', async function () {
-        const usernameInput = await driver.findElement(By.id('usernameInput'));
-        const passwordInput = await driver.findElement(By.id('passwordInput'));
+        const usernameInput = await driver.findElement(By.id('username'));
+        const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
 
-        await usernameInput.sendKeys('validUsername');
-        await passwordInput.sendKeys('invalidPassword');
+        await usernameInput.sendKeys(process.env.USERNAME_SECRET);
+        await passwordInput.sendKeys('fakePassword');
         await loginButton.click();
 
         const errorMessage = await driver.wait(
-          until.elementLocated(By.id('errorMessage')),
+          until.elementLocated(By.id('loginAlert')),
           5000
         );
-        expect(await errorMessage.getText()).to.equal('Invalid Login credentials');
+        expect(await errorMessage.getText()).to.equal('Could not login');
       });
     });
 
     describe('Login with empty fields', function () {
       it('should show "Please fill in this field" prompt for empty username', async function () {
-        const usernameInput = await driver.findElement(By.id('usernameInput'));
-        const passwordInput = await driver.findElement(By.id('passwordInput'));
+        const usernameInput = await driver.findElement(By.id('username'));
+        const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
 
-        // Clearing the username field to make it empty
         await usernameInput.clear();
-        await passwordInput.sendKeys('validPassword');
+        await passwordInput.sendKeys(process.env.PASSWORD_SECRET);
         await loginButton.click();
 
-        const promptMessage = await driver.wait(
-          until.elementLocated(By.id('usernamePrompt')),
-          5000
-        );
-        expect(await promptMessage.getText()).to.equal('Please fill in this field');
+        const alert = await driver.switchTo().alert();
+        const alertText = await alert.getText();
+        
+        expect(alertText).to.equal('Please fill in this field');
       });
 
       it('should show "Please fill in this field" prompt for empty password', async function () {
-        const usernameInput = await driver.findElement(By.id('usernameInput'));
-        const passwordInput = await driver.findElement(By.id('passwordInput'));
+        const usernameInput = await driver.findElement(By.id('username'));
+        const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
 
-        // Clearing the password field to make it empty
-        await usernameInput.sendKeys('validUsername');
+        await usernameInput.sendKeys(process.env.USERNAME_SECRET);
         await passwordInput.clear();
         await loginButton.click();
 
-        const promptMessage = await driver.wait(
-          until.elementLocated(By.id('passwordPrompt')),
-          5000
-        );
-        expect(await promptMessage.getText()).to.equal('Please fill in this field');
+        const alert = await driver.switchTo().alert();
+        const alertText = await alert.getText();
+        
+        expect(alertText).to.equal('Please fill in this field');
       });
     });
   });
+
+  describe('Login with valid credentials', function () {
+    it('should redirect to the correct page', async function () {
+      const usernameInput = await driver.findElement(By.id('username'));
+      const passwordInput = await driver.findElement(By.id('password'));
+      const loginButton = await driver.findElement(By.id('loginSubmit'));
+  
+      await usernameInput.sendKeys(process.env.USERNAME_SECRET);
+      await passwordInput.sendKeys(process.env.PASSWORD_SECRET);
+      await loginButton.click();
+  
+      const redirectedPage = await driver.wait(
+        until.urlContains('jobs'), 
+        10000
+      );
+  
+      expect(redirectedPage).to.be.true;
+    });
+  });
+  
 
   after(async function () {
     await driver.quit();
