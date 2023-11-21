@@ -10,8 +10,10 @@ describe('Login & Site Flow Tests', function() {
 
   before(async function() {
     const options = new Options();
-    options.addArguments('--headless');
-    options.addArguments('--start-maximized');
+    options.headless().windowSize({
+      height: 1080,
+      width: 1920,
+    });
     driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
