@@ -4,6 +4,7 @@ import path from 'path';
 import nunjucks from 'nunjucks';
 import express from 'express';
 import session from 'express-session';
+import token from './middleware/token';
 
 const app = express();
 
@@ -39,11 +40,14 @@ app.listen(3000, () => {
   console.log('*** Server listening on port 3000 ***');
 });
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('./controller/AuthController')(app);
+
+//IF THE USER NEEDS TO BE LOGGED IN TO ACCESS IT PUT IT BELOW THIS APP.USE
+app.use(token)
 app.get('/', (req: Request, res: Response)=> {
   res.render('index', {token: req.session.token});
 });
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('./controller/JobController')(app);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require('./controller/AuthController')(app);
