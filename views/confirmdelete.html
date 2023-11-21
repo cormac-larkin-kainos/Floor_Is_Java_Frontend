@@ -1,0 +1,41 @@
+{% extends 'templates/master.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <section id="jobs" class="mt-4">
+        <h2>Confirm Job Delete</h2>
+        <form method="post" action="/confirmdeletejob">
+            <input type="hidden" id="job" name="job" value="{{ job.jobID }}"/>
+            <div class="form-group">
+                <p class="font-weight-bold">Title</p>
+                <p>{{ job.title }}</p>
+            </div>
+    
+            <div class="form-group">
+                <p class="font-weight-bold">Description</p>
+                <p>{{ job.jobSpec }}</p>
+            </div>
+    
+            <div class="form-group">
+                <p class="font-weight-bold">Capability</p>
+                <p>{{ job.capability }}</p>
+            </div>
+    
+            <div class="form-group">
+                <p class="font-weight-bold">Band</p>
+                <p>{{ job.band }}</p>
+            </div>
+    
+            <div class="form-group">
+                <a href="{{ job.jobURL }}" id="viewSharePointButton_{{ job.jobID }}" class="btn btn-primary btn-md kainos-btn" role="button">
+                    View in Sharepoint
+                  </a>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Delete</a>
+            </div>
+        </form> 
+    </section>
+</div>
+{% endblock %}

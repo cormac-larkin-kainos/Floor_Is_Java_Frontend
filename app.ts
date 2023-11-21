@@ -5,6 +5,7 @@ import nunjucks from 'nunjucks';
 import express from 'express';
 import session from 'express-session';
 import token from './middleware/token';
+import getTokenRole from './utils/getTokenRole';
 
 const app = express();
 
@@ -32,7 +33,9 @@ app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60000}})
 
 declare module 'express-session' {
   interface SessionData {
-    token: string
+    token: string,
+    errormessage: string | null,
+    successmessage: string | null,
   }
 }
 
@@ -46,7 +49,10 @@ require('./controller/AuthController')(app);
 //IF THE USER NEEDS TO BE LOGGED IN TO ACCESS IT PUT IT BELOW THIS APP.USE
 app.use(token);
 app.get('/', (req: Request, res: Response)=> {
-  res.render('index', {token: req.session.token});
+  res.render('index', {
+    token: req.session.token,
+    role: getTokenRole(req.session.token),
+  });
 });
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

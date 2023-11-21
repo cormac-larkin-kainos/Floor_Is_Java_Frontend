@@ -23,10 +23,18 @@
                      <td>{{ job.capability }}</td>
                      <td>{{ job.jobBand }}</td>
                      <td>
-                        <a href="{{ job.jobURL }}" id="viewSharePointButton_{{ job.jobID }}" class="btn btn-primary btn-lg kainos-btn" role="button">
+                        <a href="{{ job.jobURL }}" id="viewSharePointButton_{{ job.jobID }}" class="btn btn-primary btn-md kainos-btn" role="button">
                           View in Sharepoint
                         </a>
-                      </td>                
+                      </td> 
+                      
+                      {% if role == "Admin" %}
+                        <td>
+                            <a href="/delete/job/{{ job.jobID }}" class="btn btn-danger btn-md kainos-btn" role="button">
+                                Delete
+                            </a>
+                        </td>
+                      {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

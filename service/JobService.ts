@@ -22,5 +22,24 @@ export default class JobService {
       console.log(e);
       throw new Error('Could not get jobs');
     }
-  } 
+  }
+
+  async getJobById(id:number): Promise<Job> {
+    try {
+      const response = await axios.get(this.URL + 'job/' + id);
+      return response.data as Job;
+    } catch(e) {
+      console.error(e)
+      throw new Error("Could not get job");
+    }
+  }
+
+  async deleteJob(id:number): Promise<boolean> {
+    try {
+      const response = await axios.delete(this.URL + "jobs/" + id)
+      return response.status == 200
+    } catch(e) {
+      return false
+    }
+  }
 }
