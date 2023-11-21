@@ -16,7 +16,7 @@ export default class AuthService{
       const response = await axios.post(this.URL + 'login', login);
       return response.data;
     } catch (e) {
-      console.log(e)
+      console.log(e);
       throw new Error('Invalid Login credentials');
     }
   };
