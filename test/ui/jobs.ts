@@ -16,6 +16,7 @@ describe('Landing Page', function() {
     });
 
     driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
+    await driver.get('http://localhost:3000');
   });
 
   async function takeScreenshot(driver:WebDriver, file:string){
@@ -32,7 +33,6 @@ describe('Landing Page', function() {
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {
-      await driver.get('http://localhost:3000');
       const button = await driver.findElement(By.id('viewJobRolesButton'));
       await new Promise(resolve => setTimeout(resolve, 10000));
       await button.click();
@@ -44,7 +44,6 @@ describe('Landing Page', function() {
 
   describe('"First View in Sharepoint" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      await driver.get('http://localhost:3000');
       const jobId = 1;
       const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
       await button.click();
