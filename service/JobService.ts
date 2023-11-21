@@ -5,11 +5,18 @@ import axios from 'axios';
 dotenv.config();
 
 export default class JobService {
-  url: string = 'https://tk6ar7pqdr.eu-west-1.awsapprunner.com/api/';
+
+  private URL: string = process.env.API_URL
+
+  constructor(){
+    if(!this.URL){
+      throw new Error("API_URL ENVIRONMENT NOT SET");
+    }
+  }
 
   async getAllJobs(): Promise<Job[]>{
     try{
-      const response = await axios.get(this.url + 'jobs');
+      const response = await axios.get(this.URL + 'jobs');
       const jobs: Job[] = response.data;
     
       return jobs;
