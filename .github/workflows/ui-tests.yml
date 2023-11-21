@@ -27,11 +27,11 @@ jobs:
       env:
         API_URL: ${{ secrets.API_URL }}
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        TEST_VALID_USER: ${{ secrets.TEST_VALID_USER }}
+        TEST_VALID_USER: ${{ secrets.TEST_VALID_USERNAME }}
         TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD }}
     
     - name: Wait for server
       run: sleep 10
-      
+
     - name: Run UI tests
       run: npm run test-ui
