@@ -44,7 +44,7 @@ app.listen(3000, () => {
 require('./controller/AuthController')(app);
 
 //IF THE USER NEEDS TO BE LOGGED IN TO ACCESS IT PUT IT BELOW THIS APP.USE
-app.use(token)
+app.use(token);
 app.get('/', (req: Request, res: Response)=> {
   res.render('index', {token: req.session.token});
 });
