@@ -8,7 +8,7 @@ module.exports = function(app: Application){
 
   const jobservice: JobService = new JobService();
 
-  app.get('/jobs',roleAccess([UserRole.Admin]), async (req: Request, res: Response) => {
+  app.get('/jobs',roleAccess([UserRole.Admin,UserRole.User]), async (req: Request, res: Response) => {
        
     let jobs: Job[] =  [];
 
