@@ -12,9 +12,10 @@ module.exports = function(app: Application){
 
     try {
       jobs = await jobservice.getAllJobs();
+      res.render('view-all-jobs', {jobs: jobs, token: req.session.token});
     } catch (error) {
       console.error(error);
     }
-    res.render('view-all-jobs', {jobs, token: req.session.token});
+    
   });
 };

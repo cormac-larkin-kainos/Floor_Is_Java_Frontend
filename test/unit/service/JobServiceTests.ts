@@ -1,18 +1,23 @@
-import axios from 'axios';
+const axios = require("axios");
 import MockAdapter from 'axios-mock-adapter';
 import chai from 'chai';
 const expect = chai.expect;
 import { Job } from '../../../model/Job';
 import JobService from '../../../service/JobService';
+import * as dotenv from 'dotenv';
 
 const jobService = new JobService();
+
+dotenv.config()
 
 
 const job: Job = {
   jobID: 1,
   title: 'Software Engineer',
   jobSpec: 'This is a job spec',
+  capability: 'Engineering',
   jobURL: 'www.jobs.com',
+  jobBand: 'Consultant'
 };
 
 describe('JobService', function () {
@@ -22,17 +27,20 @@ describe('JobService', function () {
 
       const data = [job];
 
-      mock.onGet(jobService.URL).reply(200, data);
+      const API_URL = process.env.API_URL + "jobs"
+
+      mock.onGet(API_URL).reply(200, data);
 
       const results = await jobService.getAllJobs();
 
       expect(results[0]).to.deep.equal(job);
     });
-
     it('should throw an exception when a 500 error is returned from axios', async () => {
       const mock = new MockAdapter(axios);
 
-      mock.onGet(jobService.URL).reply(500);
+      const API_URL = process.env.API_URL + "jobs"
+
+      mock.onGet(API_URL).reply(500);
 
       let error;
 

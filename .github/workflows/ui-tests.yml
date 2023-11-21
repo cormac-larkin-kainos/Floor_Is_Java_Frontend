@@ -1,0 +1,44 @@
+name: Run UI Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start server
+      run: npm start & 
+      env:
+        API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+    
+    - name: Wait for server
+      run: sleep 10
+
+    - name: Create screenshots folder
+      run: mkdir screenshots
+
+    - name: Run UI tests
+      run: npm run test-ui
+
+    - name: Save Selenium Screenshots
+      uses: actions/upload-artifact@v3
+      with: 
+        name: screenshots
+        path: ./screenshots/*.png

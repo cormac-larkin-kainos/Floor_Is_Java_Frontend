@@ -17,7 +17,7 @@ describe('Landing Page', function () {
 
   describe('Click Login button in header', function () {
     it('should open the login page and present form', async function () {
-      const button = await driver.findElement(By.id('loginButton'));
+      const button = await driver.findElement(By.id('loginSubmit'));
       await new Promise((resolve) => setTimeout(resolve, 10000));
       await button.click();
 
@@ -27,6 +27,7 @@ describe('Landing Page', function () {
 
     describe('Login with invalid credentials', function () {
       it('should show "Invalid Login credentials" error for incorrect username', async function () {
+        await driver.get('http://localhost:3000/login');
         const usernameInput = await driver.findElement(By.id('username'));
         const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
@@ -39,10 +40,11 @@ describe('Landing Page', function () {
           until.elementLocated(By.id('loginError')),
           5000
         );
-        expect(await errorMessage.getText()).to.equal('Could not login');
+        expect(await errorMessage.getText()).to.equal('Invalid Login credentials');
       });
 
       it('should show "Invalid Login credentials" error for incorrect password', async function () {
+        await driver.get('http://localhost:3000/login');
         const usernameInput = await driver.findElement(By.id('username'));
         const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
@@ -55,12 +57,13 @@ describe('Landing Page', function () {
           until.elementLocated(By.id('loginAlert')),
           5000
         );
-        expect(await errorMessage.getText()).to.equal('Could not login');
+        expect(await errorMessage.getText()).to.equal('Invalid Login credentials');
       });
     });
 
     describe('Login with empty fields', function () {
       it('should show "Please fill in this field" prompt for empty username', async function () {
+        await driver.get('http://localhost:3000/login');
         const usernameInput = await driver.findElement(By.id('username'));
         const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
@@ -76,6 +79,7 @@ describe('Landing Page', function () {
       });
 
       it('should show "Please fill in this field" prompt for empty password', async function () {
+        await driver.get('http://localhost:3000/login');
         const usernameInput = await driver.findElement(By.id('username'));
         const passwordInput = await driver.findElement(By.id('password'));
         const loginButton = await driver.findElement(By.id('loginSubmit'));
@@ -94,6 +98,7 @@ describe('Landing Page', function () {
 
   describe('Login with valid credentials', function () {
     it('should redirect to the correct page', async function () {
+      await driver.get('http://localhost:3000/login');
       const usernameInput = await driver.findElement(By.id('username'));
       const passwordInput = await driver.findElement(By.id('password'));
       const loginButton = await driver.findElement(By.id('loginSubmit'));

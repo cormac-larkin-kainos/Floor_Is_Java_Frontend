@@ -1,6 +1,7 @@
-import { Builder, By, until, WebDriver } from 'selenium-webdriver';
+import { Builder, By, Capabilities, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
-import chrome from 'selenium-webdriver/chrome';
+import { Options } from 'selenium-webdriver/chrome';
+import { writeFile } from 'node:fs/promises';
 
 describe('Landing Page', function() {
   this.timeout(100000);
@@ -8,19 +9,27 @@ describe('Landing Page', function() {
   let driver: WebDriver;
 
   before(async function() {
-    const options = new chrome.Options();
-    options.addArguments('--headless'); 
-    options.addArguments('--start-maximized');
-    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+    const options = new Options();
+    options.headless().windowSize({
+      height: 1080,
+      width: 1920,
+    });
+
+    driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
-    const usernameInput = await driver.findElement(By.id('username'));
-    const passwordInput = await driver.findElement(By.id('password'));
-    const loginButton = await driver.findElement(By.id('loginSubmit'));
-  
-    await usernameInput.sendKeys(process.env.USERNAME_SECRET);
-    await passwordInput.sendKeys(process.env.PASSWORD_SECRET);
-    await loginButton.click();
   });
+
+  async function takeScreenshot(driver:WebDriver, file:string){
+    const image = await driver.takeScreenshot();
+    await writeFile(file, image, 'base64');
+  }
+
+  afterEach(async function() {
+    takeScreenshot(driver,'./screenshots/' + this.currentTest.title + '.png');
+    const html = await driver.executeScript('return document.getElementsByTagName(\'html\')[0].innerHTML');
+    console.log(html);
+  });
+
 
   describe('"View Job Roles" button', function() {
     it('should load job list when clicked', async function() {

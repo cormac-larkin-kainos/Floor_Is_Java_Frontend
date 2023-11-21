@@ -10,6 +10,8 @@
                 <tr>
                     <th scope="col">Job</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Capability</th>
+                    <th scope="col">Band</th>
                     <th scope="col">Sharepoint Page</th>
                 </tr>
             </thead>
@@ -18,8 +20,14 @@
                 <tr>
                      <td>{{ job.title }}</td>
                      <td>{{ job.jobSpec }}</td>
-                     <td><a href="{{ job.jobURL }}" class="btn btn-primary btn-lg kainos-btn" role="button" >View in Sharepoint</a></td>
-                </tr>
+                     <td>{{ job.capability }}</td>
+                     <td>{{ job.jobBand }}</td>
+                     <td>
+                        <a href="{{ job.jobURL }}" id="viewSharePointButton_{{ job.jobID }}" class="btn btn-primary btn-lg kainos-btn" role="button">
+                          View in Sharepoint
+                        </a>
+                      </td>                
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
