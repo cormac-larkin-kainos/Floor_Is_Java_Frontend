@@ -32,15 +32,6 @@ jobs:
     
     - name: Wait for server
       run: sleep 10
-
-    - name: Create screenshots folder
-      run: mkdir screenshots
-
+      
     - name: Run UI tests
       run: npm run test-ui
-
-    - name: Save Selenium Screenshots
-      uses: actions/upload-artifact@v3
-      with: 
-        name: screenshots
-        path: ./screenshots/*.png
