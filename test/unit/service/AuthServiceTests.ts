@@ -17,10 +17,6 @@ describe('AuthService', function () {
 
       const API_URL = process.env.API_URL + "login"
 
-      console.log(API_URL)
-      console.log(process.env.TEST_VALID_USERNAME)
-      console.log(process.env.TEST_VALID_PASSWORD)
-
       mock.onPost(API_URL).reply(200, "TEST.TEST.TEST");
 
 
