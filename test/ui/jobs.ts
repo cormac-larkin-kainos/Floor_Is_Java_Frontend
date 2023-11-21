@@ -1,7 +1,7 @@
 import { Builder, By, Capabilities, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
 import { Options } from 'selenium-webdriver/chrome';
-import { writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises';
 
 describe('Landing Page', function() {
   this.timeout(100000);
@@ -20,15 +20,15 @@ describe('Landing Page', function() {
   });
 
   async function takeScreenshot(driver:WebDriver, file:string){
-    let image = await driver.takeScreenshot()
-    await writeFile(file, image, 'base64')
+    const image = await driver.takeScreenshot();
+    await writeFile(file, image, 'base64');
   }
 
   afterEach(async function() {
-    takeScreenshot(driver,"./screenshots/" + this.currentTest.title + ".png")
-    const html = await driver.executeScript("return document.getElementsByTagName('html')[0].innerHTML")
-    console.log(html)
-  })
+    takeScreenshot(driver,'./screenshots/' + this.currentTest.title + '.png');
+    const html = await driver.executeScript('return document.getElementsByTagName(\'html\')[0].innerHTML');
+    console.log(html);
+  });
 
 
   describe('"View Job Roles" button', function() {
