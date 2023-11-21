@@ -32,6 +32,6 @@ export default function roleAccess(role:UserRole[]) {
         return;
     }
 
-    res.sendStatus(403);
+    res.status(403).render("noaccess",{token: req.session.token});
   };
 }
