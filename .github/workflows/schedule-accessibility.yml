@@ -28,6 +28,9 @@ jobs:
         URL2="https://jfq3guymm9.eu-west-1.awsapprunner.com/jobs"
         pa11y-ci-schedule --reporter=pa11y-ci-reporter-html --config=.pa11yci.json $URL1 $URL2 > "pa11y-scheduled-report-$TIMESTAMP.html"
         echo "::set-output name=timestamp::$TIMESTAMP"
+      env:
+        API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
     
     - name: Archive HTML report
       uses: actions/upload-artifact@v2

@@ -26,8 +26,11 @@ jobs:
       - name: Install pa11y-ci dependencies
         run: npm install
  
-      - name: Start application
-        run: npm start > /dev/null 2>&1 &
+      - name: Start server
+        run: npm start & 
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
  
       - name: Wait for application to start
         run: sleep 10
