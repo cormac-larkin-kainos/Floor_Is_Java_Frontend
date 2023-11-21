@@ -25,6 +25,8 @@ describe('Landing Page', function() {
 
   afterEach(async function() {
     takeScreenshot(driver,"./screenshots/" + this.currentTest.title + ".png")
+    const html = await driver.executeScript("return document.getElementsByTagName('html')[0].innerHTML")
+    console.log(html)
   })
 
 
