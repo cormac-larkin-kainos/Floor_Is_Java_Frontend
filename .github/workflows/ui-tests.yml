@@ -38,5 +38,6 @@ jobs:
 
     - name: Save Selenium Screenshots
       uses: actions/upload-artifact@v3
-      with: screenshots
-      path: ./screemshots/*.png
+      with: 
+        name: screenshots
+        path: ./screenshots/*.png
