@@ -26,6 +26,7 @@ jobs:
       run: npm start & 
       env:
         API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
     
     - name: Wait for server
       run: sleep 10
