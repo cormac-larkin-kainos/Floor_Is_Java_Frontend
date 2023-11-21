@@ -6,11 +6,11 @@ dotenv.config();
 
 export default class JobService {
 
-  private URL: string = process.env.API_URL
+  private URL: string = process.env.API_URL;
 
   constructor(){
     if(!this.URL){
-      throw new Error("API_URL ENVIRONMENT NOT SET");
+      throw new Error('API_URL ENVIRONMENT NOT SET');
     }
   }
 

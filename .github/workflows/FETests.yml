@@ -24,3 +24,7 @@ jobs:
 
     - name: Run tests
       run: npm test
+      env:
+        API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+
