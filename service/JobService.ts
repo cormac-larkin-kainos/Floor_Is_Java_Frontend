@@ -1,8 +1,6 @@
-import * as dotenv from 'dotenv';
 import { Job } from '../model/Job';
 import axios from 'axios';
 
-dotenv.config();
 
 export default class JobService {
 
