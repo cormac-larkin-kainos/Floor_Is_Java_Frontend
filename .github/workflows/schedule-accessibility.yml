@@ -12,6 +12,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Create pa11y-ci-report directory
+      run: mkdir pa11y-ci-report
+
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
