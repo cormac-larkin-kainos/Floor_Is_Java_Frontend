@@ -3,6 +3,7 @@ import { Job } from '../model/Job';
 import JobService from '../service/JobService';
 import roleAccess from '../middleware/auth';
 import UserRole from '../model/UserRole';
+import getTokenRole from '../utils/getTokenRole';
 
 module.exports = function(app: Application){
 
@@ -15,14 +16,18 @@ module.exports = function(app: Application){
 
     try {
       jobs = await jobservice.getAllJobs();
-      res.render('view-all-jobs', {jobs: jobs, token: req.session.token});
+      res.render('view-all-jobs', {
+        jobs: jobs,
+        token: req.session.token,
+        role: getTokenRole(req.session.token)
+      });
     } catch (error) {
       console.error(error);
     }
     
   });
 
-  app.get('/add-job', async (req: Request, res: Response) => {
+  app.get('/add-job',roleAccess([UserRole.Admin]), async (req: Request, res: Response) => {
 
     const jobBands = [
       { value: 'engineering', label: 'Engineering' },
@@ -43,11 +48,14 @@ module.exports = function(app: Application){
       { value: 'engineering', label: 'Leadership Community' },
     ];
   
-    res.render('add-job', { jobBands, jobCapabilities });
+    res.render('add-job', { 
+      jobBands:jobBands, 
+      jobCapabilities: jobCapabilities
+    });
     
   });
 
-  app.post('/add-job', async (req: Request, res: Response) => {
+  app.post('/add-job',roleAccess([UserRole.Admin]), async (req: Request, res: Response) => {
     const data: Job = req.body;
     let id: number;
     try {

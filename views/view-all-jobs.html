@@ -4,7 +4,9 @@
 <div class="container mt-5">
     <div class="text-center">
         <h2>View All Kainos Jobs</h2>
+        {% if role == "Admin" %}
         <a href="/add-job" class="btn btn-primary kainos-btn" id="addJobButton">Create New Role</a>
+        {% endif %}
         <div class="container mt-4">
             <section id="jobs" class="mt-4">
                 

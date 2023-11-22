@@ -48,6 +48,12 @@ app.use(token);
 app.get('/', (req: Request, res: Response)=> {
   res.render('index', {token: req.session.token});
 });
+app.get('/add-job', (req: Request, res: Response)=> {
+  res.render('add-job', {token: req.session.token});
+});
+app.post('/add-job', (req: Request, res: Response)=> {
+  res.render('add-job', {token: req.session.token});
+});
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('./controller/JobController')(app);
