@@ -7,7 +7,7 @@
         <h1 class='text-center'>Login Page</h1>
     <div class="container"> 
         {% if errormessage %}
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" id="loginError" role="alert">
             {{ errormessage }}
         </div>
         {% endif %}
@@ -22,7 +22,7 @@
                 <input type="password" id="password" name="password" class="form-control" value="{{ password }}"
                     required>
             </div>
-            <button type="submit" class="btn btn-primary kainos-btn">Login</button>
+            <button type="submit" id="loginSubmit" class="btn btn-primary kainos-btn">Login</button>
         </form>
     </div>
     </section>
