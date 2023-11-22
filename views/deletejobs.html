@@ -4,17 +4,17 @@
 <div class="container mt-4">
     <section id="jobs" class="mt-4">
         <h2>Delete Job</h2>
-        <form action="/deletejob" method="post">
+        <form id="jobSelectForm" action="/deletejob" method="post">
             <div class="form-group">
                 <label for="job">Job</label>
-                <select id="job" name="job" class="form-control" required>
+                <select id="jobSelect" name="job" class="form-control" required>
                     {% for job in jobs %}
                         <option id="{{job.jobID}}" value="{{ job.jobID }}">{{ job.title }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-danger">Delete</a>
+                <button id="deleteRequestSubmit" type="submit" class="btn btn-danger">Delete</a>
             </div>
         </form>
     </section>
