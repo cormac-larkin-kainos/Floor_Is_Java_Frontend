@@ -2,6 +2,7 @@ import { Builder, By, Capabilities, until, WebDriver } from 'selenium-webdriver'
 import { expect } from 'chai';
 import { Options } from 'selenium-webdriver/chrome';
 import { writeFile } from 'node:fs/promises';
+import { join } from 'path';
 
 describe('Login & Site Flow Tests', function() {
   this.timeout(100000);
@@ -17,6 +18,14 @@ describe('Login & Site Flow Tests', function() {
     driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
+  
+async function captureAndSaveHtml(url: string, fileName: string) {
+  const htmlContent = await driver.executeScript<string>('return document.getElementsByTagName(\'html\')[0].innerHTML');
+  const snapshotsFolder = join(__dirname, 'snapshots');  
+  const fullPath = join(snapshotsFolder, fileName); 
+  await writeFile(fullPath, htmlContent);
+  console.log(`Captured HTML for ${url} and saved to ${fullPath}`);
+}
 
   describe('Login with valid credentials', function () {
     it('should redirect to the correct page', async function () {
@@ -45,13 +54,16 @@ describe('Login & Site Flow Tests', function() {
       await button.click();
       
       const jobTable = await driver.wait(until.elementLocated(By.id('jobs')), 30000);
+
+      await captureAndSaveHtml('http://localhost:3000/jobs', 'jobs-snapshot.html');
+
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
 
   describe('"First View in Sharepoint" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      const jobId = 1;
+      const jobId = 5;
       const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
       await button.click();
 
