@@ -28,10 +28,10 @@ export default function roleAccess(role:UserRole[]) {
     const jwtRole : UserRole = UserRole[JWT.role as keyof typeof UserRole];
 
     if(role.includes(jwtRole)){
-        next();
-        return;
+      next();
+      return;
     }
 
-    res.status(403).render("noaccess",{token: req.session.token});
+    res.status(403).render('noaccess',{token: req.session.token});
   };
 }
