@@ -18,4 +18,17 @@ module.exports = function(app: Application){
     }
     res.render('view-all-jobs', {jobs});
   });
+
+  app.get('/job-spec/:jobID', async (req: Request, res: Response) => {
+    const jobID = parseInt(req.params.jobID);
+
+    try {
+      const job = await jobservice.getJobResponsibilities(jobID); 
+      const responsibilities = await jobservice.getJobResponsibilities(jobID);
+
+      res.render('job-spec', { job, responsibilities });
+    } catch (error) {
+      console.error(error);
+    }
+  });
 };
