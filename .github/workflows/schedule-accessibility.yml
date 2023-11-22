@@ -34,7 +34,7 @@ jobs:
         URL1="${FRONTEND_URL}"
         URL2="${FRONTEND_URL}/jobs"
         URL3="${FRONTEND_URL}/login"
-        pa11y-ci-schedule --reporter=pa11y-ci-reporter-html --config=.pa11yci.json $URL1 $URL2 $URL3 > "pa11y-scheduled-report-$TIMESTAMP.html"
+        pa11y-ci-schedule --reporter=pa11y-ci-reporter-html --config=.pa11y-ci-schedule.json $URL1 $URL2 $URL3 > "pa11y-scheduled-report-$TIMESTAMP.html"
         echo "::set-output name=timestamp::$TIMESTAMP"
     
     - name: Archive HTML report

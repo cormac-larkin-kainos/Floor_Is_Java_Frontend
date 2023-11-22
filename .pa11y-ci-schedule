@@ -1,0 +1,23 @@
+{
+    "defaults": {
+      "concurrency": 1,
+      "runners": ["htmlcs"],
+      "standard": "WCAG2AA",
+      "viewports": [
+        { "width": 375, "height": 667 },  
+        { "width": 1920, "height": 1080 }
+      ]
+    }, 
+    "urls": [
+      {
+        "url": "${FRONTEND_URL}"
+      },
+      {
+        "url": "${FRONTEND_URL}/jobs"
+      },
+      {
+        "url": "${FRONTEND_URL}/login"
+      }
+    ]
+  }
+  
