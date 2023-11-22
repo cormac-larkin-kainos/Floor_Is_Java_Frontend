@@ -17,7 +17,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 14.21.3
+        node-version: 20
 
     - name: Install dependencies
       run: npm install
@@ -26,9 +26,17 @@ jobs:
       run: npm start & 
       env:
         API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        TEST_VALID_USERNAME: ${{ secrets.TEST_VALID_USERNAME }}
+        TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD }}
     
     - name: Wait for server
       run: sleep 10
 
     - name: Run UI tests
       run: npm run test-ui
+      env:
+        API_URL: ${{ secrets.API_URL }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        TEST_VALID_USERNAME: ${{ secrets.TEST_VALID_USERNAME }}
+        TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD }}

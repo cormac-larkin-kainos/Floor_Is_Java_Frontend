@@ -10,7 +10,7 @@
     "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && cp -R public dist && cp -R fonts dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
     "lint": "eslint .",
-    "test-ui": "mocha -r ts-node/register 'test/ui/**/*.ts'"
+    "test-ui": "npx tsc && mocha -r ts-node/register 'test/ui/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,9 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "jose": "^5.1.1",
     "nunjucks": "^3.2.4",
-    "selenium-webdriver": "^4.15.0"
+    "selenium-webdriver": "^4.11.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.10",
