@@ -33,6 +33,7 @@ module.exports = function(app: Application){
     try {
       const jobs: Job[] = await jobservice.getAllJobs();
       res.render('deletejobs',{
+        token: req.session.token,
         jobs: jobs,
         errormessage: req.session.errormessage,
         successmessage: req.session.successmessage
@@ -81,8 +82,13 @@ module.exports = function(app: Application){
       }
 
       res.render("confirmdelete",{
+        token: req.session.token,
+        errormessage: req.session.errormessage,
         job: job,
       })
+
+      req.session.errormessage = null;
+      req.session.successmessage = null;
     } catch(e){
       req.session.errormessage = e.message
       res.redirect("/deletejob")
