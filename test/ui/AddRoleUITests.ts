@@ -9,7 +9,10 @@ describe('Add Role', function() {
 
   before(async function() {
     const options = new Options();
-    
+    options.headless().windowSize({
+      height: 1080,
+      width: 1920,
+    });
     driver = await new Builder().withCapabilities(Capabilities.chrome()).setChromeOptions(options).build();
     await driver.get('http://localhost:3000');
   });
