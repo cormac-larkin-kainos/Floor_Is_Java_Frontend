@@ -39,7 +39,20 @@ describe('Landing Page', function() {
     });
   });
 
-  after(async function() {
-    await driver.quit();
+  //from DM-hope this works!
+  describe('"First view in addJob" button', function(){
+    it('should redirect to the add-job form page when clicked', async function() {
+      const addButton = await driver.findElement(By.id('addJobButton'));
+      await addButton.click();
+      await driver.wait(until.urlContains('add-job'), 20000);
+
+      const url = await driver.getCurrentUrl();
+      expect(url).to.include('add-job');
+
+    });
+
+    after(async function() {
+      await driver.quit();
+    });
   });
 });

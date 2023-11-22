@@ -1,39 +1,44 @@
 {% extends 'templates/master.html' %}
 
 {% block content %}
-<div class="container mt-4">
-    <section id="jobs" class="mt-4">
+<div class="container mt-5">
+    <div class="text-center">
         <h2>View All Kainos Jobs</h2>
-        {% if jobs and jobs.length > 0 %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Job</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Capability</th>
-                    <th scope="col">Band</th>
-                    <th scope="col">Sharepoint Page</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in jobs %}
-                <tr>
-                     <td>{{ job.title }}</td>
-                     <td>{{ job.jobSpec }}</td>
-                     <td>{{ job.capability }}</td>
-                     <td>{{ job.jobBand }}</td>
-                     <td>
-                        <a href="{{ job.jobURL }}" class="btn btn-primary btn-lg kainos-btn" role="button" id="viewSharePointButton_{{ job.jobID }}">
-                          View in Sharepoint
-                        </a>
-                      </td>                
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        There are no Jobs to show...
-        {% endif %}
-    </section>
-</div>
-{% endblock %}
+        <a href="/add-job" class="btn btn-primary kainos-btn" id="addJobButton">Create New Role</a>
+        <div class="container mt-4">
+            <section id="jobs" class="mt-4">
+                
+                {% if jobs and jobs.length > 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Job</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Capability</th>
+                            <th scope="col">Band</th>
+                            <th scope="col">Sharepoint Page</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                        <tr>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.jobSpec }}</td>
+                            <td>{{ job.capability }}</td>
+                            <td>{{ job.jobBand }}</td>
+                            <td>
+                                <a href="{{ job.jobURL }}" class="btn btn-primary btn-lg kainos-btn" role="button"
+                                    id="viewSharePointButton_{{ job.jobID }}">
+                                    View in Sharepoint
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                There are no Jobs to show...
+                {% endif %}
+            </section>
+        </div>
+        {% endblock %}
