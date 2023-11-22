@@ -10,9 +10,7 @@
     "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && cp -R public dist && cp -R fonts dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
     "lint": "eslint .",
-    "pa11y-ci": "pa11y-ci --config .pa11yci",
-    "pa11y-ci-scheduled": "pa11y-ci --reporter=pa11y-ci-reporter-html",
-    "test-ui": "mocha -r ts-node/register 'test/ui/**/*.ts'"
+    "test-ui": "npx tsc && mocha -r ts-node/register 'test/ui/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -26,14 +24,15 @@
   "homepage": "https://github.com/cormac-larkin-kainos/Floor_Is_Java_Frontend#readme",
   "dependencies": {
     "axios": "^1.6.0",
-    "clean": "^4.0.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "jose": "^5.1.1",
     "nunjucks": "^3.2.4",
     "pa11y-ci": "^3.1.0",
+    "pa11y-ci-reporter-html": "^6.0.2",
     "puppeteer": "^21.5.2",
-    "selenium-webdriver": "^4.15.0"
+    "selenium-webdriver": "^4.11.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.10",
@@ -49,7 +48,6 @@
     "chai": "^4.3.10",
     "eslint": "^8.53.0",
     "mocha": "^10.2.0",
-    "pa11y-ci-reporter-html": "^6.0.2",
     "sinon": "^17.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
