@@ -1,6 +1,7 @@
-import { Builder, By, Capabilities, until, WebDriver } from 'selenium-webdriver';
+import { Builder, By, Capabilities, Key, until, WebDriver } from 'selenium-webdriver';
 import { expect } from 'chai';
 import { Options } from 'selenium-webdriver/chrome';
+import exp from 'node:constants';
 
 describe('Delete Tests', function() {
   this.timeout(100000);
@@ -52,15 +53,27 @@ describe('Delete Tests', function() {
     it('should redirect to the appropriate page when selected and delete button clicked', async function() {
       const jobId = 1;
 
-      const element = await driver.findElement(By.id("1"))
-      await element.click();
-      const button = await driver.findElement(By.id(`deleteRequestSubmit`));
-      await button.click();
+      const jobDeleteInput = await driver.findElement(By.id('jobSelect'));
+      await jobDeleteInput.click();
+      await jobDeleteInput.sendKeys(Key.DOWN);
+      await jobDeleteInput.sendKeys(Key.ENTER);
 
-      const url = await driver.getCurrentUrl();
-      expect(url).to.include('1');
+      const redirectedPage = await driver.wait(
+        until.urlContains('http://localhost:3000/confirmdeletejob'), 
+        10000
+      );
+
+      expect(redirectedPage).to.be.true;
     });
   });
+
+  describe("Confirm delete button should be visible", () => {
+    it("Should show the confirm delete button",async() => {
+        const button = driver.findElement(By.id(`deleteRequestSubmit`))
+
+        expect(await button.getText()).to.equal("Delete")
+    })
+  })
 
   
 
