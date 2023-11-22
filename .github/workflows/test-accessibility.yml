@@ -1,0 +1,39 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+ 
+jobs:
+  pa11y:
+    name: Pa11y tests
+    runs-on: ubuntu-latest
+ 
+    strategy:
+      matrix:
+        node-version: [20.x]
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+ 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+ 
+      - name: Install pa11y-ci dependencies
+        run: npm install
+ 
+      - name: Start server
+        run: npm start & 
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+ 
+      - name: Wait for application to start
+        run: sleep 10
+ 
+      - name: Run pa11y-ci tests
+        run: npm run pa11y-ci
