@@ -28,7 +28,7 @@ describe('Login & Site Flow Tests', function() {
       await loginButton.click();
   
       const redirectedPage = await driver.wait(
-        until.urlContains('jobs'), 
+        until.urlIs('http://localhost:3000/'), 
         10000
       );
   
