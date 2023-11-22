@@ -1,22 +1,26 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
 import { Job } from '../model/Job';
 import axios from 'axios';
-axios.defaults.baseURL = process.env.API_URL;
 
 
 export default class JobService {
 
-  URL: string = '/jobs';
+  private URL: string = process.env.API_URL;
+
+  constructor(){
+    if(!this.URL){
+      throw new Error('API_URL ENVIRONMENT NOT SET');
+    }
+  }
 
   async getAllJobs(): Promise<Job[]>{
     try{
-      const response = await axios.get(this.URL);
+      const response = await axios.get(this.URL + 'jobs');
       const jobs: Job[] = response.data;
     
       return jobs;
     } catch(e) {
+      console.log(e);
       throw new Error('Could not get jobs');
     }
-  }  
+  } 
 }

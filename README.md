@@ -9,7 +9,7 @@ This application provides a frontend for the REST API: https://github.com/cormac
 ---
 Run `npm install` to build your application
 
-In root folder of the project create .env file with the following `API_URL=http://localhost:8080/api/`
+In root folder of the project create .env file with the following `API_URL=http://localhost:8080/api/` and SESSION_SECRET with your secret
 
 Run `npm start` to run application
 To check that your application is running enter url `http://localhost:3000/jobs`
@@ -21,7 +21,8 @@ To check that your application is running enter url `http://localhost:3000/jobs`
 
 # Config
 
-You can change the URL of the REST API by setting the API_URL environment variable
+You can change the URL of the REST API by setting the API_URL environment variable.
+
 
 # Build and run the service through docker
 ---
