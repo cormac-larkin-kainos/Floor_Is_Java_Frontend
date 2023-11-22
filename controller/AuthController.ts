@@ -1,6 +1,7 @@
 import { Request, Response, Application } from 'express';
 import { Login } from '../model/Auth';
 import AuthService from '../service/AuthService';
+import axios from 'axios';
 
 const authService: AuthService = new AuthService();
 
@@ -14,7 +15,8 @@ module.exports = function (app: Application) {
     
     try {
       req.session.token = await authService.login(data);
-      res.redirect('/jobs');
+      axios.defaults.headers.common.Authorization = `Bearer ${req.session.token}`;
+      res.redirect('/');
 
     } catch (e) {
       console.error(e);
@@ -25,7 +27,6 @@ module.exports = function (app: Application) {
 
   app.post('/logout', (req: Request, res: Response) => {
     req.session.token = null;
-    console.log('logout successful');
     res.redirect('/login');
   });
 };
