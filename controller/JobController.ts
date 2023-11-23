@@ -75,7 +75,7 @@ module.exports = function(app: Application){
         role: getTokenRole(req.session.token),
         capabilities: capabilities, 
         jobBands: jobBands,
-        body
+        ...body
       });
     }
   });
