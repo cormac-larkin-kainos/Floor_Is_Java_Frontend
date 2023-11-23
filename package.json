@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "engines": {
-    "node": "14.21.3s"
+    "node": "16.6.0"
   },
   "scripts": {
     "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && cp -R public dist && cp -R fonts dist && node dist/app.js",

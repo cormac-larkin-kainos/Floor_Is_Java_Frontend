@@ -81,4 +81,21 @@ module.exports = function(app: Application){
   });
 
 
+  app.get('/job-spec/:jobID', roleAccess([UserRole.Admin,UserRole.User]), async (req: Request, res: Response) => {
+    const jobID = parseInt(req.params.jobID);
+
+    try {
+      const responsibilities = await jobservice.getJobResponsibilities(jobID);
+
+      res.render('job-spec', { 
+        token: req.session.token,
+        responsibilities 
+      });
+    } catch (error) {
+      console.error(error);
+      res.render('job-spec',{
+        token: req.session.token,
+      });
+    }
+  });
 };

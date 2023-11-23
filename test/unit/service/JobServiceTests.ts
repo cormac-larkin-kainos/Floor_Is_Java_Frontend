@@ -11,7 +11,6 @@ const jobService = new JobService();
 
 dotenv.config()
 
-
 const job: Job = {
   jobID: 1,
   title: 'Software Engineer',
@@ -28,8 +27,6 @@ const jobRequest: JobRequest = {
   jobURL: 'www.jobs.com',
   jobBandID: 1
 };
-
-
 
 describe('JobService', function () {
   describe('getAllJobs', function () {
@@ -79,21 +76,7 @@ describe('JobService', function () {
         }
         expect(error).to.equal('Could not create job');
       });
-      
-      // Dependency on getJobById
-      // it('should return a job id when axios returns an id', async () => {
-      //   const mock = new MockAdapter(axios);
-      //   const id = 1;
-  
-      //   mock.onGet(jobService.URL+id).reply(200);
-  
-      //   const results = await jobService.getJobById(id);
-        
-      //   expect(results).to.equal(id);
-        
-      // });
 
-      //test null job
       
       it('should throw an error when axios returns a negative id number', async () => {
         const url: string= process.env.API_URL + 'add-job';
