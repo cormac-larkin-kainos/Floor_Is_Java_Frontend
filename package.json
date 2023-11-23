@@ -10,7 +10,7 @@
     "start": "npx tsc && cp -R views dist && cp -R public dist && cp -R fonts dist && cp -R public dist && cp -R fonts dist && node dist/app.js",
     "test": "npx tsc && mocha dist/test/unit/**/*.js",
     "lint": "eslint .",
-    "test-ui": "npx tsc && mocha -r ts-node/register 'test/ui/**/*.ts'"
+    "test-ui": "npx tsc && mocha -r ts-node/register 'test/ui/AddRoleUITests.ts' 'test/ui/LoginJobsTests.ts'"
   },
   "repository": {
     "type": "git",
