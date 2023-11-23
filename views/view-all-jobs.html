@@ -8,7 +8,7 @@
         <a href="/add-job" class="btn btn-primary kainos-btn" id="addJobButton">Create New Role</a>
         {% endif %}
         {% if jobs and jobs.length > 0 %}
-        <table class="table">
+        <table id="jobsTable" class="table">
             <thead>
                 <tr>
                     <th scope="col">Job</th>
@@ -30,14 +30,6 @@
                           See Responsibilities
                         </a>
                       </td> 
-                      
-                      {% if role == "Admin" %}
-                        <td>
-                            <a href="/delete/job/{{ job.jobID }}" class="btn btn-danger btn-md kainos-btn" role="button">
-                                Delete
-                            </a>
-                        </td>
-                      {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
