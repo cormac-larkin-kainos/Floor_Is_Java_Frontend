@@ -54,3 +54,8 @@ body .text-center {
     bottom: 0; 
     width: 100%; 
 }
+
+/* responsibilities styling */
+.responsibility-list {
+    text-align: left;
+}

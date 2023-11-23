@@ -10,7 +10,6 @@ const jobService = new JobService();
 
 dotenv.config()
 
-
 const job: Job = {
   jobID: 1,
   title: 'Software Engineer',
@@ -19,6 +18,8 @@ const job: Job = {
   jobURL: 'www.jobs.com',
   jobBand: 'Consultant'
 };
+
+const jobID = 1;
 
 describe('JobService', function () {
   describe('getAllJobs', function () {

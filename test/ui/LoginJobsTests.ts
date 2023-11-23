@@ -49,16 +49,16 @@ describe('Login & Site Flow Tests', function() {
     });
   });
 
-  describe('"First View in Sharepoint" button', function() {
+  describe('"First See Responsibilities" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      const jobId = 1;
-      const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
+      const jobId = 5;
+      const button = await driver.findElement(By.id(`viewJobSpecButton_${jobId}`));
       await button.click();
 
-      await driver.wait(until.urlContains('sharepoint'), 20000);
+      await driver.wait(until.urlContains('job-spec'), 20000);
 
       const url = await driver.getCurrentUrl();
-      expect(url).to.include('sharepoint');
+      expect(url).to.include('job-spec');
     });
   });
 

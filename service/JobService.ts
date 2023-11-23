@@ -22,5 +22,16 @@ export default class JobService {
       console.log(e);
       throw new Error('Could not get jobs');
     }
-  } 
+  }  
+
+  async getJobResponsibilities(jobID: number): Promise<string[]> {
+    try {
+      const response = await axios.get(`${this.URL}jobs/${jobID}/responsibilities`);
+      const responsibilities: string[] = response.data;
+      return responsibilities;
+    } catch (e) {
+      console.error(e);
+      throw new Error(`Could not get responsibilities for job ${jobID}`);
+    }
+  }
 }

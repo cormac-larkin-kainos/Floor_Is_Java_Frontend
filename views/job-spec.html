@@ -1,0 +1,21 @@
+{% extends 'templates/master.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>Expected Responsibilities</h1>
+        </br>
+            {% if responsibilities and responsibilities.length > 0 %}
+            <ul class="responsibility-list">
+                {% for responsibility in responsibilities %}
+                <li>
+                    {{ responsibility.responsibilityDesc }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            There are no responsibilities to show...
+            {% endif %}
+            </div>
+    </div>
+{% endblock %}
