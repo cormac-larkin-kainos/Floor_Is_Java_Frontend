@@ -27,12 +27,11 @@ module.exports = function(app: Application){
     const jobID = parseInt(req.params.jobID);
 
     try {
-      const job = await jobservice.getJobResponsibilities(jobID); 
       const responsibilities = await jobservice.getJobResponsibilities(jobID);
 
       res.render('job-spec', { 
         token: req.session.token,
-        job, responsibilities 
+        responsibilities 
       });
     } catch (error) {
       console.error(error);
