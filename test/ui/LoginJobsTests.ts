@@ -10,7 +10,7 @@ describe('Login & Site Flow Tests', function() {
 
   before(async function() {
     const options = new Options();
-    options.windowSize({
+    options.headless().windowSize({
       height: 1080,
       width: 1920,
     });
