@@ -22,7 +22,6 @@ export default class JobService {
       console.log(e);
       throw new Error('Could not get jobs');
     }
-<<<<<<< HEAD
   }
 
   async getJobById(id:number): Promise<Job> {
@@ -35,14 +34,13 @@ export default class JobService {
     }
   }
 
-  async deleteJob(id:number): Promise<boolean> {
+  async deleteJob(id:number) {
     try {
-      const response = await axios.delete(this.URL + "jobs/" + id)
-      return response.status == 200
+      await axios.delete(this.URL + "jobs/" + id)
     } catch(e) {
-      return false
-=======
-  }  
+      throw new Error("Could not delete job");
+    }
+  }
 
   async getJobResponsibilities(jobID: number): Promise<string[]> {
     try {
@@ -52,7 +50,6 @@ export default class JobService {
     } catch (e) {
       console.error(e);
       throw new Error(`Could not get responsibilities for job ${jobID}`);
->>>>>>> origin/main
     }
   }
 }
