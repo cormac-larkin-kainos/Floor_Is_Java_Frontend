@@ -29,6 +29,8 @@ jobs:
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         TEST_VALID_USERNAME: ${{ secrets.TEST_VALID_USERNAME }}
         TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD }}
+        TEST_VALID_ADMIN_USERNAME: ${{ secrets.TEST_VALID_ADMIN_USERNAME }}
+        TEST_VALID_ADMIN_PASSWORD: ${{ secrets.TEST_VALID_ADMIN_PASSWORD }}
     
     - name: Wait for server
       run: sleep 10
@@ -40,3 +42,5 @@ jobs:
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         TEST_VALID_USERNAME: ${{ secrets.TEST_VALID_USERNAME }}
         TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD }}
+        TEST_VALID_ADMIN_USERNAME: ${{ secrets.TEST_VALID_ADMIN_USERNAME }}
+        TEST_VALID_ADMIN_PASSWORD: ${{ secrets.TEST_VALID_ADMIN_PASSWORD }}
