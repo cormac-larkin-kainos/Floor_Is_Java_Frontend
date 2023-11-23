@@ -59,7 +59,7 @@ describe('Delete Tests', function() {
       await jobDeleteInput.sendKeys(Key.ENTER);
 
       const redirectedPage = await driver.wait(
-        until.urlContains('http://localhost:3000/confirmdeletejob'), 
+        until.urlContains('confirmdeletejob'), 
         10000
       );
 
