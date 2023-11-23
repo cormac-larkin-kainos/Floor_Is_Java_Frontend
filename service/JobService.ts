@@ -22,6 +22,7 @@ export default class JobService {
       console.log(e);
       throw new Error('Could not get jobs');
     }
+<<<<<<< HEAD
   }
 
   async getJobById(id:number): Promise<Job> {
@@ -40,6 +41,18 @@ export default class JobService {
       return response.status == 200
     } catch(e) {
       return false
+=======
+  }  
+
+  async getJobResponsibilities(jobID: number): Promise<string[]> {
+    try {
+      const response = await axios.get(`${this.URL}jobs/${jobID}/responsibilities`);
+      const responsibilities: string[] = response.data;
+      return responsibilities;
+    } catch (e) {
+      console.error(e);
+      throw new Error(`Could not get responsibilities for job ${jobID}`);
+>>>>>>> origin/main
     }
   }
 }
