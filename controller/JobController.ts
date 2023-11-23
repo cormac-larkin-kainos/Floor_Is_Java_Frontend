@@ -36,13 +36,13 @@ module.exports = function(app: Application){
   });
 
   app.get('/add-job', roleAccess([UserRole.Admin]) ,async (req: Request, res: Response) => {
-  
+    console.log('IN ADD JOB GET'); 
     let capabilities: Capability[] =  [];
     let jobBands: JobBand[] = [];
     try{
       capabilities = await capabilityservice.getCapabilities();
       jobBands = await jobbandservice.getJobBands();
-
+      console.log('CAPABILITIES: ', capabilities);
       res.render('add-job', { 
         token: req.session.token,
         role: getTokenRole(req.session.token),
@@ -65,8 +65,18 @@ module.exports = function(app: Application){
     }catch (e) {
       console.error(e);
       res.locals.errormessage = e.message;
+      const capabilities = await capabilityservice.getCapabilities();
+      const jobBands = await jobbandservice.getJobBands();
 
-      res.render('add-job', req.body);
+      const { body } = req;
+
+      res.render('add-job', {
+        token: req.session.token,
+        role: getTokenRole(req.session.token),
+        capabilities: capabilities, 
+        jobBands: jobBands,
+        body
+      });
     }
   });
 

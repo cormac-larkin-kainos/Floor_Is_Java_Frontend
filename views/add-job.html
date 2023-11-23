@@ -16,11 +16,7 @@
                     <label for="title">Job Title</label>
                     <input type="text" id="title" name="title" class="form-control" value="{{ title }}"
                         placeholder="Add Job title" required>  
-                <div class="form-group">
-                    <label for="jobSpec">Job Specification</label>
-                    <input type="text" id="jobSpec" name="jobSpec" class="form-control" value="{{ jobSpec }}"required>
-                </div>
-                <div class="form-group">
+                    <div class="capabilityID">
                     Job Capability:
                     <select name="capabilityID" class="form-control">
                         {% for capability in capabilities %}
@@ -34,11 +30,10 @@
                         placeholder="Example url" required>
                 </div>
                 <div class="form-group">
-                    <label for="jobURL">Job Specifcation</label>
+                    <label for="jobURL">Job Specification</label>
                     <input type="text" id="jobSpec" name="jobSpec" class="form-control" value="{{ jobSpec }}"
-                        placeholder="Example Job Specifcation" required>
+                        placeholder="Example Job Specification" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="jobBand">Job Band:</label>
                     <select name="jobBandID" class="form-control">

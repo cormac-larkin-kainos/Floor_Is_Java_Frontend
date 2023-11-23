@@ -16,7 +16,9 @@ export default class JobService {
     try{
       const response = await axios.get(this.URL + 'capabilities');
       const capabilities: Capability[] = response.data;
-        
+      
+      console.log('Hi!');
+
       return capabilities;
     } catch(e) {
       console.log(e);
