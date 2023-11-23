@@ -28,7 +28,10 @@ module.exports = function(app: Application){
       const job = await jobservice.getJobResponsibilities(jobID); 
       const responsibilities = await jobservice.getJobResponsibilities(jobID);
 
-      res.render('job-spec', { job, responsibilities });
+      res.render('job-spec', { 
+        token: req.session.token,
+        job, responsibilities 
+      });
     } catch (error) {
       console.error(error);
     }
