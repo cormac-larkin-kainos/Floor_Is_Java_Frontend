@@ -10,7 +10,7 @@ describe('Login & Site Flow Tests', function() {
 
   before(async function() {
     const options = new Options();
-    options.headless().windowSize({
+    options.windowSize({
       height: 1080,
       width: 1920,
     });
@@ -51,7 +51,7 @@ describe('Login & Site Flow Tests', function() {
 
   describe('"First View in Sharepoint" button', function() {
     it('should redirect to the appropriate page when clicked', async function() {
-      const jobId = 1;
+      const jobId = 5;
       const button = await driver.findElement(By.id(`viewSharePointButton_${jobId}`));
       await button.click();
 
@@ -98,7 +98,7 @@ describe('Login with invalid login credentials', function () {
     await loginButton.click();
 
     const errorMessage = await driver.wait(
-      until.elementLocated(By.id('loginError')),
+      until.elementLocated(By.id('errorMessage')),
       5000
     );
     expect(await errorMessage.getText()).to.equal('Invalid Login credentials');
