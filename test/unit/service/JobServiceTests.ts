@@ -1,6 +1,6 @@
 const axios = require("axios");
 import MockAdapter from 'axios-mock-adapter';
-import chai from 'chai';
+import chai, { Assertion } from 'chai';
 const expect = chai.expect;
 import { Job } from '../../../model/Job';
 import JobService from '../../../service/JobService';
@@ -10,6 +10,7 @@ const jobService = new JobService();
 
 dotenv.config()
 
+
 const job: Job = {
   jobID: 1,
   title: 'Software Engineer',
@@ -18,8 +19,6 @@ const job: Job = {
   jobURL: 'www.jobs.com',
   jobBand: 'Consultant'
 };
-
-const jobID = 1;
 
 describe('JobService', function () {
   describe('getAllJobs', function () {
@@ -57,37 +56,57 @@ describe('JobService', function () {
   });
 
   describe("delete job",function() {
-    it("Should return true when attempting to delete valid id",async () => {
+    it("Should not throw exception when attempting to delete valid id",async () => {
       const mock = new MockAdapter(axios);
       const API_URL = process.env.API_URL + "jobs/" + -1;
 
       mock.onDelete(API_URL).reply(200)
 
-      let success = await jobService.deleteJob(-1);
+      let error = null
 
-      expect(success).to.be.true;
+      try{
+        jobService.deleteJob(-1);
+      } catch(e) {
+        error = e
+      }
+
+      expect(error).to.be.null;
     });
 
-    it("Should return false when attempting to delete an id that doesn't exist", async () => {
+    it("Should throw exception when attempting to delete an id that doesn't exist", async () => {
       const mock = new MockAdapter(axios);
       const API_URL = process.env.API_URL + "jobs/" + -1;
 
       mock.onDelete(API_URL).reply(404);
 
-      let success = await jobService.deleteJob(-1);
+      let error = null
 
-      expect(success).to.be.false;
+      try{
+        await jobService.deleteJob(-1);
+      } catch(e) {
+        error = e.message
+      }
+
+      console.log(error)
+
+      expect(error).to.not.be.null;
     })
 
-    it("Should return false if a server error occurs", async () => {
+    it("Should throw exception when server error occurs", async () => {
       const mock = new MockAdapter(axios);
       const API_URL = process.env.API_URL + "jobs/" + -1;
 
       mock.onDelete(API_URL).reply(500);
 
-      let success = await jobService.deleteJob(-1);
+      let error = null
 
-      expect(success).to.be.false;
+      try{
+        await jobService.deleteJob(-1);
+      } catch(e) {
+        error = e.message
+      }
+
+      expect(error).to.not.be.null;
     });
 
 
