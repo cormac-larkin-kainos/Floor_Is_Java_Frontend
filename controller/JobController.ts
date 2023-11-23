@@ -14,7 +14,9 @@ module.exports = function(app: Application){
 
     try {
       jobs = await jobservice.getAllJobs();
-      res.render('view-all-jobs', {jobs: jobs, token: req.session.token});
+      res.render('view-all-jobs', {
+        jobs: jobs, 
+        token: req.session.token});
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +36,9 @@ module.exports = function(app: Application){
       });
     } catch (error) {
       console.error(error);
-      res.render('job-spec');
+      res.render('job-spec',{
+        token: req.session.token,
+      });
     }
   });
 };
