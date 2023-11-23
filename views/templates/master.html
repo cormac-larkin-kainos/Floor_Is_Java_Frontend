@@ -12,6 +12,16 @@
     {% include 'templates/header.html' %}
 
     <div class="main-content center">
+        {% if errormessage %}
+        <div class="alert alert-danger" id="errorMessage" role="alert">
+            {{ errormessage }}
+        </div>
+        {% endif %}
+        {% if successmessage %}
+        <div class="alert alert-success" id="successMessage" role="alert">
+            {{ successmessage }}
+        </div>
+        {% endif %}
         {% block content %} {% endblock %}
     </div>
 

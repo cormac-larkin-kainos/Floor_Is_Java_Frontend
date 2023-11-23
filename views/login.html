@@ -6,12 +6,6 @@
     <section id="form" class="bg-light py-5">
         <h1 class='text-center'>Login Page</h1>
     <div class="container"> 
-        {% if errormessage %}
-        <div class="alert alert-danger" id="loginError" role="alert">
-            {{ errormessage }}
-        </div>
-        {% endif %}
-        
         <form action="/login" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
