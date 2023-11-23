@@ -34,7 +34,8 @@ export default class JobService {
     }
 
     try{
-      const response = await axios.post(this.URL + 'jobs', job);  
+      const response = await axios.post(this.URL + 'jobs', job); 
+      console.log(response.data); 
       return response.data;
     } catch(e) {
       throw new Error('Could not create job');
