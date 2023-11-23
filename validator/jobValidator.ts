@@ -1,7 +1,7 @@
-import { Job } from '../model/Job';
+import { JobRequest } from '../model/JobRequest';
 
 export class JobValidator {
-  validateJob = function (job: Job): string {
+  validateJob = function (job: JobRequest): string {
     if (job.title.length > 255){
       return 'Job title should not exceed 255 characters';
     }

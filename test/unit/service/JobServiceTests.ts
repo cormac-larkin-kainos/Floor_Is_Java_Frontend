@@ -5,6 +5,7 @@ const expect = chai.expect;
 import { Job } from '../../../model/Job';
 import JobService from '../../../service/JobService';
 import * as dotenv from 'dotenv';
+import { JobRequest } from '../../../model/JobRequest';
 
 const jobService = new JobService();
 
@@ -19,6 +20,16 @@ const job: Job = {
   jobURL: 'www.jobs.com',
   jobBand: 'Consultant'
 };
+
+const jobRequest: JobRequest = {
+  title: 'Software Engineer',
+  jobSpec: 'This is a job spec',
+  capabilityID: 1,
+  jobURL: 'www.jobs.com',
+  jobBandID: 1
+};
+
+
 
 describe('JobService', function () {
   describe('getAllJobs', function () {
@@ -62,7 +73,7 @@ describe('JobService', function () {
         
         let error;
         try { 
-          await jobService.addJob(job);
+          await jobService.addJob(jobRequest);
         }catch (e) {
           error = e.message;
         }
@@ -91,7 +102,7 @@ describe('JobService', function () {
 
         let error;
         try {
-          await jobService.addJob(job);
+          await jobService.addJob(jobRequest);
         } catch (e) {
           error = e.message;
         }

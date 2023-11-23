@@ -17,25 +17,17 @@
                     <input type="text" id="title" name="title" class="form-control" value="{{ title }}"
                         placeholder="Add Job title" required>
                 </div>
-                <div class="dropdown-menu">
-                    <div class="form-group">
-                        <label for="jobSpec">Job Specification</label>
-                        <input type="dropdown" id="jobSpec" name="jobSpec" class="form-control" value="{{ jobSpec }}"
-                            required>
-                    </div>
-                </div>
-                <div class="dropdown">
+                <div class="form-group">
                     Job Capability:
-                    <select>
-                        {% for capability in jobCapabilities %}
-                          <option value="{{ capability.value }}">{{ capability.label }}</option>
+                    <select name="capabilityID" class="form-control">
+                        {% for capability in capabilities %}
+                        <option value="{{ capability.capabilityID }}">{{ capability.name }}</option>
                         {% endfor %}
                     </select>
-                </button>
                 </div>
                 <div class="form-group">
                     <label for="jobURL">Job URL</label>
-                    <input type="url" id="jobURL" name="jobURL" class="form-control" value="{{ jobURL }}"
+                    <input type="text" id="jobURL" name="jobURL" class="form-control" value="{{ jobURL }}"
                         placeholder="Example url" required>
                 </div>
                 <div class="form-group">
@@ -44,11 +36,11 @@
                         placeholder="Example Job Specifcation" required>
                 </div>
                 
-                <div class="dropdown">
+                <div class="form-group">
                     <label for="jobBand">Job Band:</label>
-                    <select>
+                    <select name="jobBandID" class="form-control">
                         {% for jobBand in jobBands %}
-                          <option value="{{ jobBand.value }}">{{ jobBand.label }}</option>
+                          <option value="{{ jobBand.jobBandID }}">{{ jobBand.jobBandName }}</option>
                         {% endfor %}
                     </select>
                 </div>

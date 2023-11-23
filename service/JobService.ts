@@ -1,4 +1,5 @@
 import { Job } from '../model/Job';
+import { JobRequest } from '../model/JobRequest';
 import { JobValidator } from '../validator/jobValidator';
 import axios from 'axios';
 
@@ -26,16 +27,14 @@ export default class JobService {
     }
   }
 
-  async addJob(job: Job): Promise<number>{
+  async addJob(job: JobRequest): Promise<number>{
     const error: string = this.jobValidator.validateJob(job);
     if (error) {
       throw new Error(error);
     }
+
     try{
-      if (job.jobID < 0 ){
-        throw new Error('Id number cannot be negative');
-      }
-      const response = await axios.post(this.URL + 'add-job', job);  
+      const response = await axios.post(this.URL + 'jobs', job);  
       return response.data;
     } catch(e) {
       throw new Error('Could not create job');
