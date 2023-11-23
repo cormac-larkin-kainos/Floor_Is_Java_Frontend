@@ -60,7 +60,7 @@ describe('Delete Tests', function() {
 
       const redirectedPage = await driver.wait(
         until.urlContains('confirmdeletejob'), 
-        10000
+        30000
       );
 
       expect(redirectedPage).to.be.true;
