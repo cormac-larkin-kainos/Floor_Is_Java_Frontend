@@ -58,9 +58,13 @@ describe('Delete Tests', function() {
       await jobDeleteInput.sendKeys(Key.DOWN);
       await jobDeleteInput.sendKeys(Key.ENTER);
 
+      const button = await driver.findElement(By.id('continueDelete'));
+      
+      await button.click();
+
       const redirectedPage = await driver.wait(
         until.urlContains('confirmdeletejob'), 
-        30000
+        10000
       );
 
       expect(redirectedPage).to.be.true;
