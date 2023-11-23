@@ -21,7 +21,7 @@ module.exports = function(app: Application){
     
   });
 
-  app.get('/job-spec/:jobID', async (req: Request, res: Response) => {
+  app.get('/job-spec/:jobID', roleAccess([UserRole.Admin,UserRole.User]), async (req: Request, res: Response) => {
     const jobID = parseInt(req.params.jobID);
 
     try {
@@ -34,6 +34,7 @@ module.exports = function(app: Application){
       });
     } catch (error) {
       console.error(error);
+      res.render('job-spec');
     }
   });
 };

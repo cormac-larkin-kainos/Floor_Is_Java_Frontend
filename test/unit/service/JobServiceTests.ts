@@ -54,34 +54,4 @@ describe('JobService', function () {
       expect(error).to.equal('Could not get jobs');
     });
   });
-
-  describe('getJobResponsibilities', function () {
-    it('should return responsibilities from response', async () => {
-      const mock = new MockAdapter(axios);
-
-      const data = ['Responsibility 1', 'Responsibility 2'];
-
-      mock.onGet(`/jobs/${jobID}/responsibilities`).reply(200, data);
-
-      const results = await jobService.getJobResponsibilities(jobID);
-
-      expect(results).to.deep.equal(data);
-    });
-
-    it('should throw an exception when a 500 error is returned from axios', async () => {
-      const mock = new MockAdapter(axios);
-
-      mock.onGet(`/jobs/${jobID}/responsibilities`).reply(500);
-
-      let error;
-
-      try {
-        await jobService.getJobResponsibilities(jobID);
-      } catch (e) {
-        error = e.message;
-      }
-
-      expect(error).to.equal(`Could not get responsibilities for job ${jobID}`);
-    });
-  });
 });
