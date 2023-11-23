@@ -44,7 +44,7 @@ describe('Login & Site Flow Tests', function() {
       await new Promise(resolve => setTimeout(resolve, 5000));
       await button.click();
       
-      const jobTable = await driver.wait(until.elementLocated(By.id('jobs')), 30000);
+      const jobTable = await driver.wait(until.elementLocated(By.id('jobsTable')), 30000);
       expect(await jobTable.isDisplayed()).to.be.true;
     });
   });
