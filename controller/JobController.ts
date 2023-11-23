@@ -53,7 +53,7 @@ module.exports = function(app: Application){
   app.post('/confirmdeletejob',roleAccess([UserRole.Admin]), async (req:Request, res:Response) => {
     try {
       const id:number = parseInt(req.body.job);
-      const result = await jobservice.deleteJob(id);
+      jobservice.deleteJob(id);
 
       if(!result){
         req.session.errormessage = "Could not delete the job";
