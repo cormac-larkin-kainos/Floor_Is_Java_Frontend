@@ -81,6 +81,12 @@ describe('JobService', function () {
   });
 
   it('should return a validation response when job data is invalid', async () => {
+
+    const mock = new MockAdapter(axios);
+    const token: string ='';
+    const API_URL = process.env.API_URL + "jobs"
+
+    
     const invalidJob: JobRequest = {
       title: '', // Invalid title (empty string)
       jobSpec: 'Short', 
@@ -88,6 +94,8 @@ describe('JobService', function () {
       jobURL: 'www.jobs.com',
       jobBandID: 1
     };
+
+    mock.onPost(API_URL,invalidJob).reply(400);
   
     let error;
     try {
@@ -105,8 +113,6 @@ describe('JobService', function () {
     const mock = new MockAdapter(axios);
     const token: string ='';
     const API_URL = process.env.API_URL + "jobs"
-
-    console.log(API_URL)
    
     const validJob: JobRequest = {
       title: 'Senior Software Engineer',
