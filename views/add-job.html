@@ -21,21 +21,12 @@
                     <input type="text" id="jobSpec" name="jobSpec" class="form-control" value="{{ jobSpec }}"required>
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
                     Job Capability:
                     <select name="capabilityID" class="form-control">
                         {% for capability in capabilities %}
                         <option value="{{ capability.capabilityID }}">{{ capability.name }}</option>
                         {% endfor %}
                     </select>
-=======
-                    <label for="capability">Job Capability: </label>
-                <select id="capability" name="capability" class="form-control" required>
-                        {% for capability in jobCapabilities %}
-                        <option value="{{ capability.value }}">{{ capability.label }}</option>
-                        {% endfor %}
-                </select>
->>>>>>> 575c94f5a3821388375b734d9ad2508b5ff31748
                 </div>
                 <div class="form-group">
                     <label for="jobURL">Job URL</label>
@@ -43,7 +34,6 @@
                         placeholder="Example url" required>
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
                     <label for="jobURL">Job Specifcation</label>
                     <input type="text" id="jobSpec" name="jobSpec" class="form-control" value="{{ jobSpec }}"
                         placeholder="Example Job Specifcation" required>
@@ -54,12 +44,6 @@
                     <select name="jobBandID" class="form-control">
                         {% for jobBand in jobBands %}
                           <option value="{{ jobBand.jobBandID }}">{{ jobBand.jobBandName }}</option>
-=======
-                    <label for="jobBand">Job Band</label>
-                    <select id="jobBand" name="jobBand" class="form-control">
-                        {% for jobBand in jobBands %}
-                        <option value="{{ jobBand.value }}">{{ jobBand.label }}</option>
->>>>>>> 575c94f5a3821388375b734d9ad2508b5ff31748
                         {% endfor %}
                     </select>
                 </div>
