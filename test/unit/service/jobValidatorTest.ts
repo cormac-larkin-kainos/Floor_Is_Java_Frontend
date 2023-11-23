@@ -18,7 +18,6 @@ describe('JobValidator', function () {
       };
       const error = validator.validateJob(job);
       expect(error).to.equal('Job title should not exceed 255 characters');
-             
         
     });
     it('should return string if title less than 5 characters', async () => {
@@ -59,4 +58,20 @@ describe('JobValidator', function () {
     const error = validator.validateJob(job);
     expect(error).to.equal('Job specification should be greater than 5 characters');
   });
+
+
+  it('should return null if JobRequest is valid', async () => {
+    const validator = new JobValidator();
+    const job: JobRequest = {
+      title: 'Software Engineer',
+      jobSpec: 'This is a job spec',
+      capabilityID: 1,
+      jobURL: 'www.jobs.com',
+      jobBandID: 1
+    };
+    const error = validator.validateJob(job);
+    expect(error).to.equal(null);
+  });
+
+  
 });
