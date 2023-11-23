@@ -37,14 +37,14 @@ module.exports = function(app: Application){
         jobs: jobs,
         errormessage: req.session.errormessage,
         successmessage: req.session.successmessage
-      });
+      })
     } catch(e){
       req.session.errormessage = e.message;
       res.render('deletejobs',{
         errormessage: req.session.errormessage,
-      });
+      })
     }
-  });
+  })
 
   app.post('/deletejob',roleAccess([UserRole.Admin]), async (req:Request, res:Response) => {
     res.redirect('/confirmdeletejob/' + req.body.job);
@@ -55,45 +55,39 @@ module.exports = function(app: Application){
       const id:number = parseInt(req.body.job);
       jobservice.deleteJob(id);
 
-      if(!result){
-        req.session.errormessage = 'Could not delete the job';
-        res.redirect('/confirmdeletejob/' + id);
-        return;
-      }
-
-      req.session.successmessage = 'Job deleted successfully';
+      req.session.successmessage = "Job deleted successfully";
       res.redirect('/deletejob');
 
     } catch (error) {
-      req.session.errormessage = 'There was an error attempting to delete the job';
-      res.redirect('/deletejob');
-      console.error(error);
+      req.session.errormessage = "There was an error attempting to delete the job"
+      res.redirect("/deletejob");
+      console.error(error)
     }
-  });
+  })
 
   app.get('/confirmdeletejob/:id',roleAccess([UserRole.Admin]), async(req:Request, res:Response) => {
     try {
       const job: Job = await jobservice.getJobById(parseInt(req.params.id));
 
       if(!job){
-        req.session.errormessage = 'Could not find that job';
-        res.redirect('/deletejob');
+        req.session.errormessage = "Could not find that job"
+        res.redirect('/deletejob')
         return;
       }
 
-      res.render('confirmdelete',{
+      res.render("confirmdelete",{
         token: req.session.token,
         errormessage: req.session.errormessage,
         job: job,
-      });
+      })
 
       req.session.errormessage = null;
       req.session.successmessage = null;
     } catch(e){
-      req.session.errormessage = e.message;
-      res.redirect('/deletejob');
+      req.session.errormessage = e.message
+      res.redirect("/deletejob")
     }
-  });
+  })
 
   app.get('/job-spec/:jobID', roleAccess([UserRole.Admin,UserRole.User]), async (req: Request, res: Response) => {
     const jobID = parseInt(req.params.jobID);
