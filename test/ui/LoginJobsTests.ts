@@ -98,7 +98,7 @@ describe('Login with invalid login credentials', function () {
     await loginButton.click();
 
     const errorMessage = await driver.wait(
-      until.elementLocated(By.id('loginError')),
+      until.elementLocated(By.id('errorMessage')),
       5000
     );
     expect(await errorMessage.getText()).to.equal('Invalid Login credentials');

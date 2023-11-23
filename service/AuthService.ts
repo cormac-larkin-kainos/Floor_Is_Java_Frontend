@@ -17,6 +17,9 @@ export default class AuthService{
       return response.data;
     } catch (e) {
       console.log(e);
+      if(!e.response) {
+        throw new Error('Could not attempt to login');
+      }
       throw new Error('Invalid Login credentials');
     }
   };

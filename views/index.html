@@ -6,6 +6,10 @@
             <h1>Welcome to Kainos </h1>
             <p class="lead">Explore our job roles:</p>
             <a id="viewJobRolesButton" href="/jobs" class="btn btn-primary kainos-btn">View Job Roles</a>
+
+            {% if role == "Admin" %}
+                <a id="deleteJobRolesButton" href="/deletejob" class="btn btn-danger">Delete Job Roles</a>
+            {% endif %}
         </div>
     </div>
 

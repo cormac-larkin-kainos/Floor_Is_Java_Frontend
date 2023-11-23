@@ -22,7 +22,25 @@ export default class JobService {
       console.log(e);
       throw new Error('Could not get jobs');
     }
-  }  
+  }
+
+  async getJobById(id:number): Promise<Job> {
+    try {
+      const response = await axios.get(this.URL + 'job/' + id);
+      return response.data as Job;
+    } catch(e) {
+      console.error(e);
+      throw new Error('Could not get job');
+    }
+  }
+
+  async deleteJob(id:number) {
+    try {
+      await axios.delete(this.URL + 'jobs/' + id);
+    } catch(e) {
+      throw new Error('Could not delete job');
+    }
+  }
 
   async getJobResponsibilities(jobID: number): Promise<string[]> {
     try {
