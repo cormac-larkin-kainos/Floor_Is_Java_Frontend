@@ -1,17 +1,20 @@
 import { Job } from '../model/Job';
+import { JobRequest } from '../model/JobRequest';
+import { JobValidator } from '../validator/jobValidator';
 import axios from 'axios';
 
 
 export default class JobService {
 
   private URL: string = process.env.API_URL;
+  private jobValidator: JobValidator = new JobValidator();
 
   constructor(){
     if(!this.URL){
       throw new Error('API_URL ENVIRONMENT NOT SET');
     }
   }
-
+  
   async getAllJobs(): Promise<Job[]>{
     try{
       const response = await axios.get(this.URL + 'jobs');
@@ -24,6 +27,21 @@ export default class JobService {
     }
   }
 
+  async addJob(job: JobRequest): Promise<number>{
+    const error: string = this.jobValidator.validateJob(job);
+    if (error) {
+      throw new Error(error);
+    }
+
+    try{
+      const response = await axios.post(this.URL + 'jobs', job); 
+      console.log(response.data); 
+      return response.data;
+    } catch(e) {
+      throw new Error('Could not create job');
+    }
+  }
+      
   async getJobById(id:number): Promise<Job> {
     try {
       const response = await axios.get(this.URL + 'job/' + id);

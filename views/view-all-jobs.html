@@ -1,9 +1,12 @@
 {% extends 'templates/master.html' %}
 
 {% block content %}
-<div class="container mt-4">
-    <section id="jobs" class="mt-4">
+<div class="container mt-5">
+    <div class="text-center">
         <h2>View All Kainos Jobs</h2>
+        {% if role == "Admin" %}
+        <a href="/add-job" class="btn btn-primary kainos-btn" id="addJobButton">Create New Role</a>
+        {% endif %}
         {% if jobs and jobs.length > 0 %}
         <table class="table">
             <thead>
@@ -42,6 +45,4 @@
         {% else %}
         There are no Jobs to show...
         {% endif %}
-    </section>
-</div>
-{% endblock %}
+        {% endblock %}
