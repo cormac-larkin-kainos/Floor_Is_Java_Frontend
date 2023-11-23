@@ -29,16 +29,16 @@ export default class JobService {
       const response = await axios.get(this.URL + 'job/' + id);
       return response.data as Job;
     } catch(e) {
-      console.error(e)
-      throw new Error("Could not get job");
+      console.error(e);
+      throw new Error('Could not get job');
     }
   }
 
   async deleteJob(id:number) {
     try {
-      await axios.delete(this.URL + "jobs/" + id)
+      await axios.delete(this.URL + 'jobs/' + id);
     } catch(e) {
-      throw new Error("Could not delete job");
+      throw new Error('Could not delete job');
     }
   }
 
